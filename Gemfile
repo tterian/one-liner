@@ -22,3 +22,7 @@ group :production, :staging do
 	gem 'rails_stdout_logging'
 	gem 'rails_serve_static_assets'
 end
+
+
+# Makes sense for Wondows env only
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
