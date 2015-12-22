@@ -7,6 +7,8 @@ gem 'rails-api'
 gem 'active_model_serializers'
 
 # Project-specific gems
+gem 'omniauth'
+gem 'httparty'
 gem 'devise_token_auth'
 gem 'pg'
 gem 'bower-rails'
