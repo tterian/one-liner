@@ -1,0 +1,27 @@
+/* -------------------------------- 
+Dialogs
+-------------------------------- */
+
+
+$grey   : #607D8B;
+$orange   : #FF5252;
+
+md-dialog md-content.sticky-container {
+  padding: 40px 0 0 0;
+}
+
+
+
+
+.md-dialog-user, .md-dialog-marker, .md-dialog-comment {
+  width: 25%;
+  height: auto;
+  h3 {
+    text-align: center;
+    font-weight: 400;
+  }
+}
+
+.md-dialog-action-buttons {
+  color: $grey !important;
+}

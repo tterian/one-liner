@@ -1,0 +1,90 @@
+<md-toolbar class="md-tall">
+
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>ShareEm</span>
+    </h2>
+    <span flex></span>
+
+    <md-button class="md-icon-button" aria-label="Search">
+      <md-icon md-svg-icon="assets/svg/md-search.svg"></md-icon>
+    </md-button>
+
+    <md-menu md-position-mode="target-right target" >
+      <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+        <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
+      </md-button>
+
+      <md-menu-content width="4" >
+        <md-menu-item ng-hide="user.signedIn">
+          <md-button ng-click="showSignIn($event)">
+              <div layout="row">
+                <p flex>Sign In</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item ng-hide="user.signedIn">
+          <md-button ng-click="showSignUp($event)">
+              <div layout="row">
+                <p flex>Sign Up</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item ng-show="user.signedIn">
+          <md-button>
+              <div layout="row">
+                <p flex>{{user.name}}</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item ng-show="user.signedIn">
+          <md-button ng-click="signOut($event)">
+              <div layout="row">
+                <p flex>Sign Out</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+    </md-menu>
+  </div>
+
+</md-toolbar>
+
+
+<div ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
+  <md-card>
+    <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
+    
+    <md-card-title>
+      <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+      <md-card-title-text>
+        <span class="md-headline md-user-title">{{user.name}}</span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-divider></md-divider>
+    
+    <div class="md-user-info" layout="row" layout-align="center">
+      <md-button class="md-icon-button md-user-info-icon" aria-label="Post">
+        <md-icon md-svg-icon="assets/svg/md-post.svg"></md-icon>
+        <p>{{user.postCount}}</p>
+      </md-button>
+      <md-button class="md-icon-button md-user-info-icon" aria-label="Follower">
+        <md-icon md-svg-icon="assets/svg/md-arrow-up.svg"></md-icon>
+        <p>{{user.followersCount}}</p>
+      </md-button>
+      <md-button class="md-icon-button md-user-info-icon" aria-label="Following">
+        <md-icon md-svg-icon="assets/svg/md-arrow-down.svg"></md-icon>
+        <p>{{user.followingCount}}</p>
+      </md-button>
+    </div>
+
+  </md-card>
+</div>
+
+
+

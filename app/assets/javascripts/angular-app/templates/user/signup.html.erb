@@ -1,0 +1,39 @@
+<md-dialog aria-label="signup User" class="md-dialog-user">
+  <h3>Register</h3>
+  <md-divider></md-divider>
+
+  <md-content layout-padding>
+      <form name="userForm">
+
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input type="name" aria-label="name" ng-model="user.name" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input type="email" aria-label="email" ng-model="user.email" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input type="password" aria-label="password" ng-model="user.password" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Password Confirmation</label>
+          <input type="password" aria-label="password" ng-model="user.password_confirmation" required>
+        </md-input-container>
+        
+      </form>
+  </md-content>
+
+  <md-dialog-actions layout="row">
+    <md-button class="md-primary md-dialog-action-buttons" ng-click="closeDialog()">
+      Cancel
+    </md-button>
+    <md-button class="md-primary md-dialog-action-buttons" ng-click="signUp(user)">
+      Ok
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
