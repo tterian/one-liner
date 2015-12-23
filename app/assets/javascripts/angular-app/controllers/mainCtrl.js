@@ -1,4 +1,7 @@
-function MainController($scope, $mdDialog, User) {
+function MainController($scope, $mdDialog, User, Post) {
+
+
+  $scope.posts = Post.all;
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({

@@ -14,6 +14,7 @@ angular
 		])
 	.config(routeProvider)
 	.factory('User', User)
+	.factory('Post', Post)
 	.controller('MainController', MainController)
 	.controller('UsersController', UsersController);
 

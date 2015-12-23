@@ -54,37 +54,89 @@
 
 </md-toolbar>
 
+<div class="md-main-content" layout="row">
 
-<div ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
-  <md-card>
-    <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
-    
-    <md-card-title>
-      <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-      <md-card-title-text>
-        <span class="md-headline md-user-title">{{user.name}}</span>
-      </md-card-title-text>
-    </md-card-title>
+  <span ng-hide="user.signedIn" flex="20"></span>
+  <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
+    <md-card>
+      <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
+      
+      <md-card-title>
+        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+        <md-card-title-text>
+          <span class="md-headline md-user-title">{{user.name}}</span>
+        </md-card-title-text>
+      </md-card-title>
 
-    <md-divider></md-divider>
-    
-    <div class="md-user-info" layout="row" layout-align="center">
-      <md-button class="md-icon-button md-user-info-icon" aria-label="Post">
-        <md-icon md-svg-icon="assets/svg/md-post.svg"></md-icon>
-        <p>{{user.postCount}}</p>
-      </md-button>
-      <md-button class="md-icon-button md-user-info-icon" aria-label="Follower">
-        <md-icon md-svg-icon="assets/svg/md-arrow-up.svg"></md-icon>
-        <p>{{user.followersCount}}</p>
-      </md-button>
-      <md-button class="md-icon-button md-user-info-icon" aria-label="Following">
-        <md-icon md-svg-icon="assets/svg/md-arrow-down.svg"></md-icon>
-        <p>{{user.followingCount}}</p>
-      </md-button>
-    </div>
+      <md-divider></md-divider>
+      
+      <div class="md-user-info" layout="row" layout-align="center">
+        <md-button class="md-icon-button md-user-info-icon" aria-label="Post">
+          <md-icon md-svg-icon="assets/svg/md-post.svg"></md-icon>
+          <p>{{user.postCount}}</p>
+        </md-button>
+        <md-button class="md-icon-button md-user-info-icon" aria-label="Follower">
+          <md-icon md-svg-icon="assets/svg/md-arrow-up.svg"></md-icon>
+          <p>{{user.followersCount}}</p>
+        </md-button>
+        <md-button class="md-icon-button md-user-info-icon" aria-label="Following">
+          <md-icon md-svg-icon="assets/svg/md-arrow-down.svg"></md-icon>
+          <p>{{user.followingCount}}</p>
+        </md-button>
+      </div>
 
-  </md-card>
+    </md-card>
+  </div>  
+
+
+  <div class="md-posts" flex="60" flex-xs="100" layout="column">
+
+    <md-card ng-repeat="post in posts">
+      <div layout="column">
+
+        <div class="" layout="row">
+          <img ng-src="{{post.user.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
+          <p>{{post.user.name}}</p>        
+        </div>
+
+        <div class="">
+          <p>{{post.content}}</p>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div class="">
+          <span>COMMENT</span>
+        </div>
+        
+      </div>
+    </md-card>
+
+  </div>
+
+  <span ng-hide="user.signedIn" flex="20"></span>
+  <div  ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Who to follow?</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+    </md-card>
+
+  </div>
+
 </div>
 
 
 
+
+
+
+<md-button class="md-fab md-fab-bottom-right" aria-label="Add Post" ng-click="writePost($event)">
+  <md-icon md-svg-icon="assets/svg/md-pen.svg"></md-icon>
+</md-button>

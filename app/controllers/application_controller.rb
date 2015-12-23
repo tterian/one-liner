@@ -12,4 +12,8 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.for(:sign_up) << :image
   end
 
+  def default_serializer_options
+    {root: false}
+  end
+
 end

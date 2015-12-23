@@ -2,13 +2,24 @@
 Content
 -------------------------------- */
 
+$light-blue   : #55aeed;
 
+.md-main-content {
+  padding: 20px 40px 20px 40px;
+}
 
 .md-avatar {
   width: 64px;
   height: 64px;
   margin-top: -56px;
   margin-right: 16px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.md-poster-avatar {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   box-sizing: content-box;
 }
@@ -26,4 +37,9 @@ Content
 
 .md-user-info-icon {
   margin-right: 50px !important;
+}
+
+
+.md-fab {
+  background: $light-blue !important;
 }
