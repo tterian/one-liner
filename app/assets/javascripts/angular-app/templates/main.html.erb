@@ -96,17 +96,27 @@
 
         <div class="" layout="row">
           <img ng-src="{{post.user.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
-          <p>{{post.user.name}}</p>        
-        </div>
 
-        <div class="">
-          <p>{{post.content}}</p>
+          <div class="md-post-header" layout="column">
+            <h3>
+              {{post.user.name}}
+              <span>
+                <em am-time-ago="post.created_at" class="time-ago"></em>
+              </span>
+            </h3>
+
+
+            <p>{{post.content}}</p>
+          </div>
+          
         </div>
 
         <md-divider></md-divider>
 
         <div class="">
-          <span>COMMENT</span>
+          <md-button class="md-icon-button" aria-label="Comment">
+            <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
+          </md-button>
         </div>
         
       </div>

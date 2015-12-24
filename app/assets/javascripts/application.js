@@ -17,6 +17,7 @@
 //= require angular-material
 //= require angular-material-icons
 //= require angular-aria
+//= require moment
 //= require angular-moment
 //= require angular-cookie
 //= require ng-token-auth
