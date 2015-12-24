@@ -1454,7 +1454,7 @@
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (max-width: 599px) {
+@media screen and (max-width: 599px) {
   [flex-xs] {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
