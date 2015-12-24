@@ -40,11 +40,16 @@ $light-blue   : #55aeed;
 .md-user-info {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
-.md-user-info-icon {
-  margin-right: 50px !important;
+.md-user-info-item {
+  margin-left: 30px;
+  margin-right: 30px;
+  h3 {
+    line-height: 0.25px;
+    font-weight: 300;
+    font-size: 1.75rem;
+  }
 }
 
 

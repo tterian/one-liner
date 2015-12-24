@@ -71,23 +71,24 @@
       <md-divider></md-divider>
       
       <div class="md-user-info" layout="row" layout-align="center">
-        <md-button class="md-icon-button md-user-info-icon" aria-label="Post">
+        <div class="md-user-info-item">
           <md-icon md-svg-icon="assets/svg/md-post.svg"></md-icon>
-          <p>{{user.postCount}}</p>
-        </md-button>
-        <md-button class="md-icon-button md-user-info-icon" aria-label="Follower">
+          <h3>{{user.post_count}}</h3>
+        </div>
+
+        <div class="md-user-info-item">
           <md-icon md-svg-icon="assets/svg/md-arrow-up.svg"></md-icon>
-          <p>{{user.followersCount}}</p>
-        </md-button>
-        <md-button class="md-icon-button md-user-info-icon" aria-label="Following">
+          <h3>{{user.follower_count}}</h3> 
+        </div>
+
+        <div class="md-user-info-item">
           <md-icon md-svg-icon="assets/svg/md-arrow-down.svg"></md-icon>
-          <p>{{user.followingCount}}</p>
-        </md-button>
+          <h3>{{user.following_count}}</h3>
+        </div>
       </div>
 
     </md-card>
   </div>  
-
 
   <div class="md-posts" flex="60" flex-xs="100" layout="column">
 
@@ -104,8 +105,6 @@
                 <em am-time-ago="post.created_at" class="time-ago"></em>
               </span>
             </h3>
-
-
             <p>{{post.content}}</p>
           </div>
           

@@ -1,6 +1,5 @@
 function MainController($scope, $mdDialog, User, Post) {
 
-
   $scope.posts = Post.all;
 
   $scope.showSignIn = function(ev) {
