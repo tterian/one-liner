@@ -651,7 +651,7 @@ input {
           flex: 1;
   box-sizing: border-box; }
 
-@media screen\0 {
+@media screen {
   .flex {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -2560,7 +2560,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 600px) {
+@media screen and (min-width: 600px) {
   .flex-gt-xs {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -3443,7 +3443,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 600px) and (max-width: 959px) {
+@media screen and (min-width: 600px) and (max-width: 959px) {
   .flex-sm {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -4322,7 +4322,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 960px) {
+@media screen and (min-width: 960px) {
   .flex-gt-sm {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -5205,7 +5205,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 960px) and (max-width: 1279px) {
+@media screen and (min-width: 960px) and (max-width: 1279px) {
   .flex-md {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -6084,7 +6084,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .flex-gt-md {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -6967,7 +6967,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 1280px) and (max-width: 1919px) {
+@media screen and (min-width: 1280px) and (max-width: 1919px) {
   .flex-lg {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -7846,7 +7846,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .flex-gt-lg {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
@@ -8723,7 +8723,7 @@ input {
             flex: 1;
     box-sizing: border-box; } }
 
-@media screen\0  and (min-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .flex-xl {
     -webkit-flex: 1 1 0%;
         -ms-flex: 1 1 0%;
