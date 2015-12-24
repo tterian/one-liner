@@ -16,6 +16,7 @@ angular
 	.factory('User', User)
 	.factory('Post', Post)
 	.controller('MainController', MainController)
+	.controller('PostsController', PostsController)
 	.controller('UsersController', UsersController);
 
 //Config routes

@@ -9,7 +9,7 @@ function MainController($scope, $mdDialog, User, Post) {
       escapeToClose: true,
       controller: 'UsersController',
       templateUrl: 'assets/angular-app/templates/user/signin.html.erb',
-      targetEvent: ev,
+      targetEvent: ev
     });
   };
 
@@ -20,7 +20,18 @@ function MainController($scope, $mdDialog, User, Post) {
       escapeToClose: true,
       controller: 'UsersController',
       templateUrl: 'assets/angular-app/templates/user/signup.html.erb',
-      targetEvent: ev,
+      targetEvent: ev
+    });
+  };
+
+  $scope.writePost = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'PostsController',
+      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
+      targetEvent: ev
     });
   };
 

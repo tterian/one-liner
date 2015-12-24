@@ -1,0 +1,24 @@
+<md-dialog aria-label="new Post" class="md-dialog-user">
+  <h3>Add Post</h3>
+  <md-divider></md-divider>
+
+  <md-content layout-padding>
+      <form name="userForm">
+        
+        <md-input-container class="md-block">
+          <label>Content</label>
+          <input type="text" aria-label="content" ng-model="post.content" required>
+        </md-input-container>
+        
+      </form>
+  </md-content>
+  
+  <md-dialog-actions layout="row">
+    <md-button class="md-primary md-dialog-action-buttons" ng-click="closeDialog($event)">
+      Cancel
+    </md-button>
+    <md-button class="md-primary md-dialog-action-buttons" ng-click="addPost(post)">
+      Ok
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
