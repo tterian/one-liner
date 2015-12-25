@@ -6,6 +6,13 @@
     </h2>
     <span flex></span>
 
+    <div ng-show="user.signedIn" flex="20" class="md-searchbox">
+      <div class="md-whiteframe-z1 md-searchbox-wrap">
+        <input type="text" placeholder="Search a post..." ng-model="searchPost">
+      </div>
+      <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
+    </div>
+
     <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
       Sign In
     </md-button>
@@ -99,7 +106,7 @@
     </md-card>
 
 
-    <md-card ng-repeat="post in posts | orderBy:'-id' track by $index">
+    <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
       <div layout="column">
 
         <div class="" layout="row">
