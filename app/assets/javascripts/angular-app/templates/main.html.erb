@@ -14,37 +14,26 @@
       Sign Up
     </md-button>
 
-<!--     <md-menu md-position-mode="target-right target" >
-      <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-        <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
-      </md-button>
+    <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
+      <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
+        <h2>
+          <span>
+            {{user.name}}
+          </span>
+        </h2>
+        <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
+      </div>
 
       <md-menu-content width="4" >
-        <md-menu-item ng-hide="user.signedIn">
-          <md-button ng-click="showSignIn($event)">
+        <md-menu-item>
+          <md-button ng-click="redirectProfile($event)">
               <div layout="row">
-                <p flex>Sign In</p>
+                <p flex>Profile</p>
               </div>
           </md-button>
         </md-menu-item>
 
-        <md-menu-item ng-hide="user.signedIn">
-          <md-button ng-click="showSignUp($event)">
-              <div layout="row">
-                <p flex>Sign Up</p>
-              </div>
-          </md-button>
-        </md-menu-item>
-
-        <md-menu-item ng-show="user.signedIn">
-          <md-button>
-              <div layout="row">
-                <p flex>{{user.name}}</p>
-              </div>
-          </md-button>
-        </md-menu-item>
-
-        <md-menu-item ng-show="user.signedIn">
+        <md-menu-item>
           <md-button ng-click="signOut($event)">
               <div layout="row">
                 <p flex>Sign Out</p>
@@ -53,7 +42,7 @@
         </md-menu-item>
 
       </md-menu-content>
-    </md-menu> -->
+    </md-menu>
 
   </div>
 
