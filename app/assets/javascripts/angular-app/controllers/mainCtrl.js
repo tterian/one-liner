@@ -19,18 +19,12 @@ function MainController($scope, $mdDialog, User, Post) {
       comments:     []
     };
 
-    console.log(newPost);
-    console.log(angular.copy(newPost));
-
     Post.create(newPost).$promise
       .then(function() {
-        $scope.posts.push(angular.copy(newPost));
+        $scope.posts.push(newPost);
         $scope.post = '';
       });
   };
-
-
-
 
 
 
