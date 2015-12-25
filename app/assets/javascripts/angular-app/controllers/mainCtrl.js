@@ -26,6 +26,10 @@ function MainController($scope, $mdDialog, User, Post) {
       });
   };
 
+  $scope.deletePost = function(post) {
+    
+  }
+
 
 
   $scope.showSignIn = function(ev) {

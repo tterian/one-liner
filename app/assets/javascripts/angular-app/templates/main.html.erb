@@ -119,11 +119,39 @@
 
         <md-divider></md-divider>
 
-        <div class="">
-          <md-button class="md-icon-button" aria-label="Comment">
-            <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
-          </md-button>
-        </div>
+        <md-card-actions layout="row">
+
+          <md-card-icon-actions>
+            <md-button class="md-icon-button md-comment-icon" aria-label="Comment">
+              <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
+            </md-button>
+          </md-card-icon-actions>
+
+          <md-menu md-position-mode="target-right target" >
+            <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
+              <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
+            </md-button>
+
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button>
+                    <div layout="row">
+                      <p flex>Block</p>
+                    </div>
+                </md-button>
+              </md-menu-item>
+
+              <md-menu-item ng-show="user.id == post.user_id">
+                <md-button ng-click="deletePost(post)">
+                    <div layout="row">
+                      <p flex>Delete Post</p>
+                    </div>
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+        </md-card-actions>
         
       </div>
     </md-card>
@@ -147,8 +175,3 @@
   </div>
 
 </div>
-
-<!-- 
-<md-button class="md-fab md-fab-bottom-right" aria-label="Add Post" ng-click="writePost($event)">
-  <md-icon md-svg-icon="assets/svg/md-pen.svg"></md-icon>
-</md-button> -->
