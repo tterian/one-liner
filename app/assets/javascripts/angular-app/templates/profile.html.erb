@@ -64,44 +64,30 @@
         </md-card-title-text>
       </md-card-title>
 
-      <md-divider></md-divider>
-      
-      <div class="md-user-info" layout="row" layout-align="center">
-        <div class="md-user-info-item">
-          <span>POSTS</span>
-          <h3>{{user.post_count}}</h3>
-        </div>
-
-        <div class="md-user-info-item">
-          <span>FOLLOWING</span>
-          <h3>{{user.follower_count}}</h3> 
-        </div>
-
-        <div class="md-user-info-item">
-          <span>FOLLOWERS</span>
-          <h3>{{user.following_count}}</h3>
-        </div>
-      </div>
-
     </md-card>
   </div>  
 
   <div class="md-posts" flex="60" flex-xs="100" layout="column">
 
-    <md-card ng-show="user.signedIn">
-      <div layout="row">          
-        <img ng-src="{{user.image}}" class="md-poster-avatar" alt="{{user.id}}" />
-
-        <md-input-container flex="90" md-no-float class="md-block">
-          <input ng-model="post.content" type="text" placeholder="What's happening?"
-                 ng-keypress="($event.charCode==13)?addPost(post):return">
-        </md-input-container>
-
+    <div class="md-user-info" layout="row" layout-align="center">
+      <div class="md-user-info-item">
+        <span>POSTS</span>
+        <h3>{{user.post_count}}</h3>
       </div>
-    </md-card>
+
+      <div class="md-user-info-item">
+        <span>FOLLOWING</span>
+        <h3>{{user.follower_count}}</h3> 
+      </div>
+
+      <div class="md-user-info-item">
+        <span>FOLLOWERS</span>
+        <h3>{{user.following_count}}</h3>
+      </div>
+    </div>
 
 
-    <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
+    <md-card ng-repeat="post in posts | filter:{user_id: user.id} | filter:searchPost | orderBy:'-id' track by $index">
       <div layout="column">
 
         <div class="" layout="row">

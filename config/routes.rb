@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   root 'pages#home'
+
+  get '/profile' => "pages#home"
+
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
       passwords:          'devise_token_auth/passwords',
@@ -8,8 +11,6 @@ Rails.application.routes.draw do
       sessions:           'devise_token_auth/sessions',
       token_validations:  'devise_token_auth/token_validations'
     }
-
-
 
     resources :posts,         only: [:index, :show, :create] do
       resources :comments,    only: [:index, :show, :create]

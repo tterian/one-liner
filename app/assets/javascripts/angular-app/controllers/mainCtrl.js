@@ -1,4 +1,4 @@
-function MainController($scope, $mdDialog, User, Post) {
+function MainController($scope, $location, $mdDialog, User, Post) {
 
   $scope.posts = Post.all;
 
@@ -27,10 +27,13 @@ function MainController($scope, $mdDialog, User, Post) {
   };
 
   $scope.deletePost = function(post) {
-    
+
   }
 
 
+  $scope.redirectToProfile = function(ev) {
+    $location.path('/profile');
+  }
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
