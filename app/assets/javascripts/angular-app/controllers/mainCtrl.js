@@ -30,9 +30,10 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
   }
 
-
   $scope.redirectToProfile = function(ev) {
-    $location.path('/profile');
+    var userId = $scope.user.name.replace(/ /g,"_").toLowerCase();
+    var path = '/profile/'+userId;
+    $location.path(path);
   }
 
   $scope.showSignIn = function(ev) {

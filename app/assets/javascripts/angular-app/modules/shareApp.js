@@ -26,7 +26,7 @@ function routeProvider($routeProvider, $locationProvider) {
       controller: 'MainController',
       templateUrl: 'assets/angular-app/templates/main.html.erb'
     })
-    .when('/profile', {
+    .when('/profile/:id', {
       controller: 'MainController',
       templateUrl: 'assets/angular-app/templates/profile.html.erb'      
     })
