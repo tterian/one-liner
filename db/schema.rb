@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151222174221) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "nickname"
+    t.string   "bio"
     t.string   "image"
     t.string   "email"
     t.json     "tokens"
