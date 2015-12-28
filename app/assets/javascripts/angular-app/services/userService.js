@@ -21,12 +21,7 @@ function User($auth) {
     },
 
     signUp: function(user) {
-      return $auth.submitRegistration({
-        email: user.email,
-        password: user.password,
-        name: user.name,
-        avatar: user.avatar,
-      });
+      return $auth.submitRegistration(user);
     }
   };
   return User;
