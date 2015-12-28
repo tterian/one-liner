@@ -1,7 +1,6 @@
 function UsersController($scope, $mdDialog, User) {
 
   $scope.signUp = function(user) {
-    console.log(user);
     User.signUp(user)
       .then(function() {
         User.signIn(user);

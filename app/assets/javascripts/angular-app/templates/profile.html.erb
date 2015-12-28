@@ -56,11 +56,12 @@
   <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
     <md-card>
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
-      
+
       <md-card-title>
         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
         <md-card-title-text>
           <span class="md-headline md-user-title">{{user.name}}</span>
+          <span class="md-subhead md-user-title">{{user.bio}}</span>
         </md-card-title-text>
       </md-card-title>
 
