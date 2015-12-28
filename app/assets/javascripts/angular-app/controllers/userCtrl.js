@@ -5,6 +5,9 @@ function UsersController($scope, $mdDialog, User) {
       .then(function() {
         User.signIn(user);
         $mdDialog.hide();
+      })
+      .catch(function(response) {
+        $scope.authResponse = response.data.errors;
       });
   };
 
@@ -12,8 +15,10 @@ function UsersController($scope, $mdDialog, User) {
     User.signIn(user)
       .then(function() {
         $mdDialog.hide();
+      })
+      .catch(function(response) {
+        $scope.authResponse = response.errors;
       });
   };
-
 
 };
