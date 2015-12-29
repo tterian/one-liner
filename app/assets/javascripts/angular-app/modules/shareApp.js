@@ -19,6 +19,7 @@ angular
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
+  .controller('SettingsController', SettingsController)
   .controller('UsersController', UsersController);
 
 //Config routes
@@ -30,7 +31,11 @@ function routeProvider($routeProvider, $locationProvider) {
     })
     .when('/profile/:id', {
       controller: 'ProfilesController',
-      templateUrl: 'assets/angular-app/templates/profile.html.erb'      
+      templateUrl: 'assets/angular-app/templates/user/profile.html.erb'      
+    })
+    .when('/settings/account', {
+      controller: 'SettingsController',
+      templateUrl: 'assets/angular-app/templates/user/setting.html.erb'      
     })
     .otherwise({
       redirectTo: '/'

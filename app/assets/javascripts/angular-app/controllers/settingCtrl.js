@@ -1,11 +1,5 @@
-function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Account, Post) {
+function SettingsController($scope, $routeParams, $location, $mdDialog, User) {
 
-  $scope.posts = Post.all;
-  $scope.currentUser = Account.get($routeParams.id);
-
-  $scope.deletePost = function(post) {
-
-  }
 
 
   $scope.redirectToProfile = function(user) {
@@ -15,10 +9,21 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Ac
     $location.path(path);
   }
 
-  $scope.redirectToSetting = function(user) {
+  $scope.redirectToSetting = function(ev) {
     var path = '/settings/account';
     $location.path(path);
   }
+
+  $scope.editProfile = function(user) {
+    User.updateProfile(user)
+      .then(function() {
+        $mdDialog.hide();
+      })
+      .catch(function(response) {
+        $scope.authResponse = response.errors;
+      });
+  }
+
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
@@ -38,17 +43,6 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Ac
       escapeToClose: true,
       controller: 'UsersController',
       templateUrl: 'assets/angular-app/templates/user/signup.html.erb',
-      targetEvent: ev
-    });
-  };
-
-  $scope.showEditProfile = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/edit.html.erb',
       targetEvent: ev
     });
   };

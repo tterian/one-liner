@@ -25,10 +25,6 @@
       Post
     </md-button>
 
-    <md-button ng-show="currentUser.id == user.id" ng-click="showEditProfile($event)" class="md-raised" aria-label="Edit">
-      Edit Profile
-    </md-button>
-
     <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
       <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
         <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
@@ -36,9 +32,19 @@
 
       <md-menu-content width="4" >
         <md-menu-item>
-          <md-button ng-click="redirectToProfile($event)">
+          <md-button ng-click="redirectToProfile(user)">
               <div layout="row">
                 <p flex>{{user.name}}</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-divider></md-divider>
+
+        <md-menu-item>
+          <md-button ng-click="redirectToSetting($event)">
+              <div layout="row">
+                <p flex>Settings</p>
               </div>
           </md-button>
         </md-menu-item>

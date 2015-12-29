@@ -1,0 +1,149 @@
+<md-toolbar>
+
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>ShareEm</span>
+    </h2>
+    <span flex></span>
+
+    <div ng-show="user.signedIn" flex="20" class="md-searchbox">
+      <div class="md-whiteframe-z1 md-searchbox-wrap">
+        <input type="text" placeholder="Search a post..." ng-model="searchPost">
+      </div>
+      <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
+    </div>
+
+    <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
+      Sign In
+    </md-button>
+
+    <md-button ng-hide="user.signedIn" ng-click="showSignUp($event)" class="md-raised" aria-label="Sign up">
+      Sign Up
+    </md-button>
+
+    <md-button ng-show="user.signedIn" ng-click="showPost($event)" class="md-raised" aria-label="Post">
+      Post
+    </md-button>
+
+    <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
+      <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
+        <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
+      </div>
+
+      <md-menu-content width="4" >
+        <md-menu-item>
+          <md-button ng-click="redirectToProfile(user)">
+              <div layout="row">
+                <p flex>{{user.name}}</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-divider></md-divider>
+
+        <md-menu-item>
+          <md-button ng-click="redirectToSetting($event)">
+              <div layout="row">
+                <p flex>Settings</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="signOut($event)">
+              <div layout="row">
+                <p flex>Sign Out</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+    </md-menu>
+
+  </div>
+
+</md-toolbar>
+
+<div class="md-main-content" layout="row">
+
+  <span flex="15"></span>
+
+  <span ng-hide="user.signedIn" flex="15"></span>
+  <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
+    <md-card>
+      <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
+
+      <md-card-title>
+        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+        <md-card-title-text>
+          <span class="md-title md-user-title">{{user.name}}</span>
+          <span class="md-subhead md-user-title">{{user.bio}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      
+      <md-divider></md-divider>
+
+      <div class="md-subhead md-user-joined">
+        <p><em>
+          <span>joined {{user.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
+        </em></p>
+      </div>
+
+    </md-card>
+
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">User ratings/comments</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+
+  </div>  
+
+  <div class="md-posts" flex="40" flex-xs="100" layout="column">
+
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">Account</span>
+          <span class="md-subhead">Change your basic account settings.</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <md-input-container class="md-block">
+          <label>User Name</label>
+          <input md-maxlength="30" name="name" ng-model="user.name">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input md-maxlength="30" name="email" ng-model="user.email">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Biography</label>
+          <textarea name="biography" ng-model="user.bio" md-maxlength="50"></textarea>
+          <div class="hint">A short text about yourself.</div>
+        </md-input-container>
+
+        <md-switch ng-model="user.active" aria-label="Deactivate">
+          Deactivate my account
+        </md-switch>
+
+      </md-card-content>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="editProfile(user)">Save Changes</md-button>
+      </md-card-actions>
+
+    </md-card>
+
+  </div>
+
+  <span flex="30"></span>
+
+</div>

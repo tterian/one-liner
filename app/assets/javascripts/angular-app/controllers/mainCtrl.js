@@ -37,6 +37,11 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     $location.path(path);
   }
 
+  $scope.redirectToSetting = function(user) {
+    var path = '/settings/account';
+    $location.path(path);
+  }
+
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
       scope: $scope,
