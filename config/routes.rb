@@ -12,11 +12,14 @@ Rails.application.routes.draw do
       token_validations:  'devise_token_auth/token_validations'
     }
 
+    devise_scope :user do
+      get '/account/info/:id', to: 'devise_token_auth/accounts#info', as: :info
+    end
+
     resources :posts,         only: [:index, :show, :create] do
       resources :comments,    only: [:index, :show, :create]
     end
     resources :relationships, only: [:create, :destroy]
-    resources :bios, only: [:show, :update]
   end
 
 end

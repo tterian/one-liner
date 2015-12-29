@@ -28,7 +28,7 @@
 
       <md-menu-content width="4" >
         <md-menu-item>
-          <md-button ng-click="redirectToProfile($event)">
+          <md-button ng-click="redirectToProfile(user)">
               <div layout="row">
                 <p flex>{{user.name}}</p>
               </div>
@@ -112,7 +112,7 @@
 
           <div class="md-post-header" layout="column">
             <h3>
-              {{post.user.name}}
+              <span ng-click="redirectToProfile(post.user)">{{post.user.name}}</span>
               <span>
                 <em am-time-ago="post.created_at" class="time-ago"></em>
               </span>

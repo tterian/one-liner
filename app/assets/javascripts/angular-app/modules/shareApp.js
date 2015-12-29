@@ -14,8 +14,10 @@ angular
     ])
   .config(routeProvider)
   .factory('User', User)
+  .factory('Account', Account)
   .factory('Post', Post)
   .controller('MainController', MainController)
+  .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
   .controller('UsersController', UsersController);
 
@@ -27,7 +29,7 @@ function routeProvider($routeProvider, $locationProvider) {
       templateUrl: 'assets/angular-app/templates/main.html.erb'
     })
     .when('/profile/:id', {
-      controller: 'MainController',
+      controller: 'ProfilesController',
       templateUrl: 'assets/angular-app/templates/profile.html.erb'      
     })
     .otherwise({

@@ -68,10 +68,10 @@
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
 
       <md-card-title>
-        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+        <img ng-src="{{currentUser.image}}" class="md-avatar" alt="{{currentUser.name}}" />
         <md-card-title-text>
-          <span class="md-title md-user-title">{{user.name}}</span>
-          <span class="md-subhead md-user-title">{{user.bio}}</span>
+          <span class="md-title md-user-title">{{currentUser.name}}</span>
+          <span class="md-subhead md-user-title">{{currentUser.bio}}</span>
         </md-card-title-text>
       </md-card-title>
       
@@ -79,7 +79,7 @@
 
       <div class="md-subhead md-user-joined">
         <p><em>
-          <span>joined {{user.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
+          <span>joined {{currentUser.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
         </em></p>
       </div>
 
@@ -100,22 +100,22 @@
     <div class="md-user-info" layout="row" layout-align="center">
       <div class="md-user-info-item">
         <span class="md-subhead">POSTS</span>
-        <h3 class="md-subhead">{{user.post_count}}</h3>
+        <h3 class="md-subhead">{{currentUser.post_count}}</h3>
       </div>
 
       <div class="md-user-info-item">
         <span class="md-subhead">FOLLOWING</span>
-        <h3 class="md-subhead">{{user.following_count}}</h3>
+        <h3 class="md-subhead">{{currentUser.following_count}}</h3>
       </div>
 
       <div class="md-user-info-item">
         <span class="md-subhead">FOLLOWERS</span>
-        <h3 class="md-subhead">{{user.follower_count}}</h3>
+        <h3 class="md-subhead">{{currentUser.follower_count}}</h3>
       </div>
     </div>
 
 
-    <md-card ng-repeat="post in posts | filter:{user_id: user.id} | filter:searchPost | orderBy:'-id' track by $index">
+    <md-card ng-repeat="post in posts | filter:{user_id: currentUser.id} | filter:searchPost | orderBy:'-id' track by $index">
       <div layout="column">
 
         <div class="" layout="row">

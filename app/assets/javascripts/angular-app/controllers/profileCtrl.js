@@ -1,6 +1,8 @@
-function MainController($scope, $location, $mdDialog, User, Post) {
+function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Account, Post) {
 
   $scope.posts = Post.all;
+  $scope.currentUser = Account.get($routeParams.id);
+  console.log($scope.currentUser);
 
   $scope.addPost = function(post) {
 
@@ -31,8 +33,7 @@ function MainController($scope, $location, $mdDialog, User, Post) {
   }
 
   $scope.redirectToProfile = function(user) {
-//  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var userId = user.id;
+    var userId = user.name.replace(/ /g,"_").toLowerCase();
     var path = '/profile/'+userId;
     $location.path(path);
   }
