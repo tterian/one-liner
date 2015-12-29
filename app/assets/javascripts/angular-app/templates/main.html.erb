@@ -52,17 +52,17 @@
 
 <div class="md-main-content" layout="row">
 
-  <span flex="10"></span>
+  <span flex="15"></span>
 
-  <span ng-hide="user.signedIn" flex="20"></span>
-  <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
+  <span ng-hide="user.signedIn" flex="15"></span>
+  <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
     <md-card>
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
       
       <md-card-title>
         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
         <md-card-title-text>
-          <span class="md-headline md-user-title">{{user.name}}</span>
+          <span class="md-title md-user-title">{{user.name}}</span>
           <span class="md-subhead md-user-title">{{user.bio}}</span>
         </md-card-title-text>
       </md-card-title>
@@ -71,18 +71,18 @@
       
       <div class="md-user-info" layout="row" layout-align="center">
         <div class="md-user-info-item">
-          <span>POSTS</span>
-          <h3>{{user.post_count}}</h3>
+          <span class="md-subhead">POSTS</span>
+          <h3 class="md-subhead">{{user.post_count}}</h3>
         </div>
 
         <div class="md-user-info-item">
-          <span>FOLLOWING</span>
-          <h3>{{user.follower_count}}</h3> 
+          <span class="md-subhead">FOLLOWING</span>
+          <h3 class="md-subhead">{{user.follower_count}}</h3> 
         </div>
 
         <div class="md-user-info-item">
-          <span>FOLLOWERS</span>
-          <h3>{{user.following_count}}</h3>
+          <span class="md-subhead">FOLLOWERS</span>
+          <h3 class="md-subhead">{{user.following_count}}</h3>
         </div>
       </div>
 
@@ -163,13 +163,13 @@
 
   </div>
 
-  <span ng-hide="user.signedIn" flex="20"></span>
-  <div  ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+  <span ng-hide="user.signedIn" flex="15"></span>
+  <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
 
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Who to follow?</span>
+          <span class="md-title">Who to follow?</span>
         </md-card-title-text>
       </md-card-title>
 
@@ -179,6 +179,6 @@
 
   </div>
 
-  <span flex="10"></span>
+  <span flex="15"></span>
 
 </div>
