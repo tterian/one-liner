@@ -112,14 +112,15 @@
 
           <div class="md-post-header" layout="column">
             <h3>
-              <span ng-click="redirectToProfile(post.user)">{{post.user.name}}</span>
+              <span ng-click="redirectToProfile(post.user)" class="md-post-owner">
+                {{post.user.name}}
+              </span>
               <span>
                 <em am-time-ago="post.created_at" class="time-ago"></em>
               </span>
             </h3>
             <p>{{post.content}}</p>
-          </div>
-          
+          </div>          
         </div>
 
         <md-divider></md-divider>

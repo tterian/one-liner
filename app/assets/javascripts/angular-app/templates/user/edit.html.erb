@@ -13,12 +13,12 @@
 
         <md-input-container class="md-block">
           <label>User Name</label>
-          <input md-maxlength="30" name="name" ng-model="user.name">
+          <input md-maxlength="30" name="name" ng-model="currentUser.name">
         </md-input-container>
 
         <md-input-container class="md-block">
           <label>Biography</label>
-          <textarea name="biography" ng-model="user.bio" md-maxlength="50"></textarea>
+          <textarea name="biography" ng-model="currentUser.bio" md-maxlength="50"></textarea>
           <div class="hint">A short text about yourself.</div>
         </md-input-container>
 
@@ -29,7 +29,7 @@
     <md-button class="md-primary md-dialog-action-buttons" ng-click="closeDialog()">
       Cancel
     </md-button>
-    <md-button class="md-primary md-dialog-action-buttons" ng-click="editProfile(user)">
+    <md-button class="md-primary md-dialog-action-buttons" ng-click="editProfile(currentUser)">
       Ok
     </md-button>
   </md-dialog-actions>

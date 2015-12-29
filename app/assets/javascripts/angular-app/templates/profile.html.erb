@@ -25,7 +25,7 @@
       Post
     </md-button>
 
-    <md-button ng-show="user.signedIn" ng-click="showEditProfile($event)" class="md-raised" aria-label="Edit">
+    <md-button ng-show="currentUser.id == user.id" ng-click="showEditProfile($event)" class="md-raised" aria-label="Edit">
       Edit Profile
     </md-button>
 
@@ -123,7 +123,9 @@
 
           <div class="md-post-header" layout="column">
             <h3>
-              {{post.user.name}}
+              <span class="md-post-owner">
+                {{post.user.name}}
+              </span>
               <span>
                 <em am-time-ago="post.created_at" class="time-ago"></em>
               </span>
