@@ -56,6 +56,8 @@
 
 <div class="md-main-content" layout="row">
 
+  <span flex="10"></span>
+
   <span ng-hide="user.signedIn" flex="20"></span>
   <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
     <md-card>
@@ -74,7 +76,7 @@
     </md-card>
   </div>  
 
-  <div class="md-posts" flex="60" flex-xs="100" layout="column">
+  <div class="md-posts" flex="40" flex-xs="100" layout="column">
 
     <div class="md-user-info" layout="row" layout-align="center">
       <div class="md-user-info-item">
@@ -166,7 +168,8 @@
       <md-divider></md-divider>
 
     </md-card>
-
   </div>
+
+  <span flex="10"></span>
 
 </div>
