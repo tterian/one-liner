@@ -58,6 +58,18 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     });
   };
 
+  $scope.showEditProfile = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'UsersController',
+      templateUrl: 'assets/angular-app/templates/user/edit.html.erb',
+      targetEvent: ev
+    });
+  };
+
+
   $scope.signOut = function() {
     User.signOut()
   };

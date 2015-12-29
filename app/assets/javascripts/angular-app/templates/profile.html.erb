@@ -21,6 +21,10 @@
       Sign Up
     </md-button>
 
+    <md-button ng-show="user.signedIn" ng-click="showEditProfile($event)" class="md-raised" aria-label="Edit">
+      Edit Profile
+    </md-button>
+
     <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
       <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
         <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
@@ -60,7 +64,9 @@
       <md-card-title>
         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
         <md-card-title-text>
-          <span class="md-headline md-user-title">{{user.name}}</span>
+          <span class="md-headline md-user-title">
+            {{user.name}}
+          </span>
           <span class="md-subhead md-user-title">{{user.bio}}</span>
         </md-card-title-text>
       </md-card-title>

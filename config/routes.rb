@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :comments,    only: [:index, :show, :create]
     end
     resources :relationships, only: [:create, :destroy]
+    resources :bios, only: [:show, :update]
   end
 
 end

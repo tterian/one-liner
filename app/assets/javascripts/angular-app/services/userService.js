@@ -9,6 +9,10 @@ function User($auth) {
       return $auth.validateUser(user).$$state.value;
     },
 
+    updateProfile: function(user) {
+      return $auth.updateAccount(user)
+    },
+
     signIn: function(user) {
       return $auth.submitLogin({
         email: user.email,
