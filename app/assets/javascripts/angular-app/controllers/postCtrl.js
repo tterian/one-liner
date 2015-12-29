@@ -1,8 +1,7 @@
-function PostsController($scope, $mdDialog, User, Post) {
-
-  $scope.currentUser = User.currentUser();
+function PostsController($scope, $mdDialog, Post) {
 
   $scope.addPost = function(post) {
+
     if ($scope.posts.length == 0) {
       var lastPost = 0;
     } else {
@@ -12,7 +11,10 @@ function PostsController($scope, $mdDialog, User, Post) {
     var newPost = {
       id:           lastPost.id + 1,
       content:      post.content,
-      user_id:      post.user_id
+      user_id:      $scope.user.id,
+      user:         $scope.user,
+      created_at:   new Date(),
+      comments:     []
     };
 
     Post.create(newPost).$promise

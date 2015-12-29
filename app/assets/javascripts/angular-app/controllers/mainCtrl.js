@@ -69,6 +69,18 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     });
   };
 
+  $scope.showPost = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'PostsController',
+      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
+      targetEvent: ev
+    });
+  };
+
+
 
   $scope.signOut = function() {
     User.signOut()

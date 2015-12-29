@@ -109,7 +109,7 @@ module DeviseTokenAuth
     def render_create_success
       render json: {
         data: @resource.as_json(except: [
-          :tokens, :created_at, :updated_at
+          :tokens, :updated_at
       ], methods: [
           :post_count, :follower_count, :following_count
       ]) }
