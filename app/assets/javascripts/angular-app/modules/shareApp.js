@@ -10,9 +10,12 @@ angular
     /* Authetication */
     'ng-token-auth',
     /* Time ago and more */
-    'angularMoment'
+    'angularMoment',
+    /*File upload*/
+    'angular-filepicker'
     ])
   .config(routeProvider)
+  .config(filepickerProvider)
   .factory('User', User)
   .factory('Account', Account)
   .factory('Post', Post)
@@ -43,4 +46,9 @@ function routeProvider($routeProvider, $locationProvider) {
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
+};
+
+
+function filepickerProvider(filepickerProvider) {
+    filepickerProvider.setKey('ACmNE3o9NQWWF6DsEiHMuz');
 };

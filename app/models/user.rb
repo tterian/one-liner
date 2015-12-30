@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  after_create :update_avatar
+
   before_save do
     self.uid = SecureRandom.uuid
   end
@@ -32,5 +34,10 @@ class User < ActiveRecord::Base
 
   def following_count
     self.following.count
+  end
+
+  def update_avatar
+    self.image = "assets/placeholder.png"
+    save
   end
 end

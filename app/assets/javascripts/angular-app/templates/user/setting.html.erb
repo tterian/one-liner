@@ -71,7 +71,7 @@
   <span ng-hide="user.signedIn" flex="15"></span>
   <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
     <md-card>
-      <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
+      <img src="assets/cover1.png" class="md-card-image" alt="Cover">
 
       <md-card-title>
         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
@@ -130,14 +130,63 @@
           <div class="hint">A short text about yourself.</div>
         </md-input-container>
 
-        <md-switch ng-model="user.active" aria-label="Deactivate">
-          Deactivate my account
+      </md-card-content>
+
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">Image</span>
+          <span class="md-subhead">Upload a profile picture.</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div class="">
+          <img ng-src="{{user.image}}" class="placeholder" alt="Placeholder" />
+        </div>
+        <md-button class="md-raised" filepicker type="filepicker" aria-label="File Upload"
+                                      data-fp-multiple="false"
+                                      data-fp-button-text="Upload a profile photo"
+                                      data-fp-services="computer"
+                                      on-success="onPhotoUpload(event.fpfile)">
+        </md-button>
+      </md-card-content>
+
+
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">Notifications</span>
+          <span class="md-subhead">Send notiigcations whenever any action happens.</span>
+        </md-card-title-text>
+      </md-card-title>
+ 
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <md-switch ng-model="user.active1" aria-label="Notification Like">
+          Send me an email when someone likes my post
+        </md-switch>
+
+        <md-switch ng-model="user.active2" aria-label="Notification Direct Message">
+          Send me an email when someone sends me a Direct Message
+        </md-switch>
+
+        <md-switch ng-model="user.active3" aria-label="Notification Follow Request">
+          Send me an email when request to follow me
+        </md-switch>
+
+        <md-switch ng-model="user.active4" aria-label="Notification Follow Accepted">
+          Send me an email when my follow request is accepted
         </md-switch>
 
       </md-card-content>
 
+
       <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="editProfile(user)">Save Changes</md-button>
+        <md-button class="md-warn md-raised">Deactivate Account</md-button>
+        <span flex></span>
+        <md-button class="md-raised" ng-click="editProfile(user)">Save Changes</md-button>
       </md-card-actions>
 
     </md-card>

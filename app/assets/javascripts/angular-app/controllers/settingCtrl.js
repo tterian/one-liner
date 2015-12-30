@@ -58,6 +58,9 @@ function SettingsController($scope, $routeParams, $location, $mdDialog, User) {
     });
   };
 
+  $scope.onPhotoUpload = function(file) {
+    $scope.user.image = file.url;
+  }
 
 
   $scope.signOut = function() {

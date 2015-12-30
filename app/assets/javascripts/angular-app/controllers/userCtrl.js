@@ -21,14 +21,4 @@ function UsersController($scope, $mdDialog, User) {
       });
   };
 
-  $scope.editProfile = function(user) {
-    User.updateProfile(user)
-      .then(function() {
-        $mdDialog.hide();
-      })
-      .catch(function(response) {
-        $scope.authResponse = response.errors;
-      });
-  }
-
 };
