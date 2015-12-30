@@ -183,6 +183,64 @@
       </md-card-content>
 
 
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">Privacy</span>
+          <span class="md-subhead">Change your security and privacy settings.</span>
+        </md-card-title-text>
+      </md-card-title>
+ 
+      <md-divider></md-divider>
+
+      <md-card-content>
+
+        <div class="">
+        <md-input-container>
+          <label>Direct Messages</label>
+          <md-select ng-model="user.directMessage">
+            <md-option value="1">
+              Allow only followers to Direct Message me
+            </md-option>
+            <md-option value="2">
+              Allow anyone to Direct Message me
+            </md-option>
+            <md-option value="3">
+              Do not allow anyone to Direct Message me
+            </md-option>            
+          </md-select>
+        </md-input-container>          
+        </div>
+
+        <div class="">
+        <md-input-container>
+          <label>Followers</label>
+          <md-select ng-model="user.directMessage">
+            <md-option value="1">
+              Only allow my followers to see how many following/followers I have
+            </md-option>
+            <md-option value="2">
+              Do not allow my followers to see how many following/followers I have
+            </md-option>
+          </md-select>
+        </md-input-container>          
+        </div>
+
+        <div class="">
+        <md-input-container>
+          <label>Posts</label>
+          <md-select ng-model="user.directMessage">
+            <md-option value="1">
+              Allow anyone to see my post
+            </md-option>
+            <md-option value="2">
+              Allow only followers to see my post
+            </md-option>
+          </md-select>
+        </md-input-container>          
+        </div>
+
+      </md-card-content>
+
       <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-warn md-raised">Deactivate Account</md-button>
         <span flex></span>
