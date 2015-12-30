@@ -77,7 +77,8 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
 
   $scope.signOut = function() {
-    User.signOut()
+    User.signOut();
+    $location.path('/');
   };
 
   $scope.closeDialog = function(ev) {

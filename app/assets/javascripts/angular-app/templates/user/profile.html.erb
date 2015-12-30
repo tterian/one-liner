@@ -1,9 +1,27 @@
 <md-toolbar>
 
   <div class="md-toolbar-tools">
-    <h2>
-      <span>ShareEm</span>
-    </h2>
+
+    <span flex="30"></span>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Home"
+                ng-show="user.signedIn"
+                ng-click="redirectToHome($event)">
+      Home
+    </md-button>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Notifications"
+                ng-show="user.signedIn"
+                ng-click="redirectToNotifications($event)">
+      Notifications
+    </md-button>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Messages"
+                ng-show="user.signedIn"
+                ng-click="redirectToMessages($event)">
+      Messages
+    </md-button>
+
     <span flex></span>
 
     <div ng-show="user.signedIn" flex="20" class="md-searchbox">

@@ -71,7 +71,8 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Ac
 
 
   $scope.signOut = function() {
-    User.signOut()
+    User.signOut();
+    $location.path('/');
   };
 
   $scope.closeDialog = function(ev) {

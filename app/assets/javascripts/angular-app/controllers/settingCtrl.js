@@ -64,7 +64,8 @@ function SettingsController($scope, $routeParams, $location, $mdDialog, User) {
 
 
   $scope.signOut = function() {
-    User.signOut()
+    User.signOut();
+    $location.path('/');
   };
 
   $scope.closeDialog = function(ev) {
