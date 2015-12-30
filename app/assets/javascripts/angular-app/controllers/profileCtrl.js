@@ -1,7 +1,11 @@
 function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Account, Post) {
 
-  $scope.posts = Post.all;
-  $scope.currentUser = Account.get($routeParams.id);
+  Account.get($routeParams.id).$promise
+    .then(function(response) {
+      $scope.currentProfile = response;
+      $scope.posts = response.posts;
+    });
+
 
   $scope.deletePost = function(post) {
 
