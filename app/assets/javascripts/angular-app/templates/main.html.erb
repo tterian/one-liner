@@ -2,7 +2,7 @@
 
   <div class="md-toolbar-tools">
 
-    <span flex="30"></span>
+    <span flex="15"></span>
 
     <md-button  md-no-ink class="md-primary" aria-label="Home"
                 ng-show="user.signedIn"
@@ -22,7 +22,8 @@
       Messages
     </md-button>
 
-    <span ng-show="user.signedIn" flex></span>
+    <span ng-show="user.signedIn" flex="20"></span>
+    <span ng-hide="user.signedIn" flex="15"></span>
 
     <div ng-hide="user.signedIn" flex="40" class="md-searchbox">
       <div class="md-whiteframe-z1 md-searchbox-wrap">
@@ -48,6 +49,7 @@
       Sign Up
     </md-button>
 
+    <div>
     <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
       <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
         <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
@@ -82,6 +84,7 @@
 
       </md-menu-content>
     </md-menu>
+    </div>
 
   </div>
 
