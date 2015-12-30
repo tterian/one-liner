@@ -30,18 +30,6 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
   }
 
-  $scope.redirectToProfile = function(user) {
-//  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var userId = user.id;
-    var path = '/profile/'+userId;
-    $location.path(path);
-  }
-
-  $scope.redirectToSetting = function(user) {
-    var path = '/settings/account';
-    $location.path(path);
-  }
-
   $scope.showSignIn = function(ev) {
     $mdDialog.show({
       scope: $scope,
@@ -85,5 +73,35 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     $mdDialog.hide(ev);
   }
 
+
+// Redirects
+
+  $scope.redirectToProfile = function(user) {
+//  var userId = user.name.replace(/ /g,"_").toLowerCase();
+    var userId = user.id;
+    var path = '/profile/'+userId;
+    $location.path(path);
+  }
+
+  $scope.redirectToSetting = function(user) {
+    var path = '/settings/account';
+    $location.path(path);
+  }
+
+  $scope.redirectToHome = function(ev) {
+    var path = '/';
+    $location.path(path);
+  }
+
+  $scope.redirectToNotifications = function(ev) {
+    var path = '/notifications';
+    $location.path(path);
+  }
+
+  $scope.redirectToMessages = function(ev) {
+    var path = '/messages';
+    $location.path(path);
+  }
+  
 
 };
