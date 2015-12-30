@@ -22,7 +22,16 @@
       Messages
     </md-button>
 
-    <span flex></span>
+    <span ng-show="user.signedIn" flex></span>
+
+    <div ng-hide="user.signedIn" flex="40" class="md-searchbox">
+      <div class="md-whiteframe-z1 md-searchbox-wrap">
+        <input type="text" placeholder="Search a post..." ng-model="searchPost">
+      </div>
+      <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
+    </div>
+
+    <span ng-hide="user.signedIn" flex></span>
 
     <div ng-show="user.signedIn" flex="20" class="md-searchbox">
       <div class="md-whiteframe-z1 md-searchbox-wrap">
@@ -31,13 +40,13 @@
       <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
     </div>
 
-    <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
+<!--     <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
       Sign In
     </md-button>
 
     <md-button ng-hide="user.signedIn" ng-click="showSignUp($event)" class="md-raised" aria-label="Sign up">
       Sign Up
-    </md-button>
+    </md-button> -->
 
     <md-button ng-show="user.signedIn" ng-click="showPost($event)" class="md-raised" aria-label="Post">
       Post
@@ -200,7 +209,6 @@
 
   </div>
 
-  <span ng-hide="user.signedIn" flex="15"></span>
   <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
 
     <md-card>
@@ -215,6 +223,51 @@
     </md-card>
   </div>
 
-  <span flex="15"></span>
+  <div ng-hide="user.signedIn" flex="20" flex-xs="100" layout="column">
+    
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">Sign In</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input required name"email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input required name="password" ng-model="user.password" minlength="8">
+        </md-input-container>
+
+        <md-checkbox ng-model="user.rememberme" aria-label="Remember Me">
+          Remember Me
+        </md-checkbox>
+        
+        <p class="hint">
+          <em><a href="https://google.com">Forgot Password</a></em>  
+        </p>
+
+        <p class="hint">
+          <em><a href="https://google.com">Forgot Username</a></em>  
+        </p>
+
+      </md-card-content>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Sign in</md-button>
+      </md-card-actions>
+
+    </md-card>
+
+
+
+  </div>
 
 </div>

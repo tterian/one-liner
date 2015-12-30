@@ -30,15 +30,14 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
   }
 
-  $scope.showSignIn = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/signin.html.erb',
-      targetEvent: ev
-    });
+  $scope.signIn = function(user) {
+    User.signIn(user)
+      .then(function() {
+        $mdDialog.hide();
+      })
+      .catch(function(response) {
+        $scope.authResponse = response.errors;
+      });
   };
 
   $scope.showSignUp = function(ev) {
@@ -102,6 +101,6 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     var path = '/messages';
     $location.path(path);
   }
-  
+
 
 };
