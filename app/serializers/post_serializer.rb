@@ -1,8 +1,11 @@
 class PostSerializer < ActiveModel::Serializer
 
-  attributes :id, :content, :user_id, :created_at
+  attributes :id, :content, :user_id, :poster, :created_at
 
   has_many :comments
-  has_one  :user
+
+  def poster
+    object.user
+  end
 
 end

@@ -1,4 +1,4 @@
-function MainController($scope, $window, $location, $mdDialog, User, Post) {
+function MainController($scope, $location, $mdDialog, User, Post) {
 
   $scope.posts = Post.all;
 
@@ -14,8 +14,11 @@ function MainController($scope, $window, $location, $mdDialog, User, Post) {
     var newPost = {
       id:           lastPost.id + 1,
       content:      post.content,
+      poster: {
+        image: $scope.user.image,
+        name:  $scope.user.name
+      },
       user_id:      $scope.user.id,
-      user:         user,
       created_at:   new Date(),
       comments:     []
     };

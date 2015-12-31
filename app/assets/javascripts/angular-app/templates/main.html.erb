@@ -148,12 +148,12 @@
       <div layout="column">
 
         <div class="" layout="row">
-          <img ng-src="{{post.user.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
+          <img ng-src="{{post.poster.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
 
           <div class="md-post-header" layout="column">
             <h3>
               <span ng-click="redirectToProfile(post.user)" class="md-post-owner">
-                {{post.user.name}}
+                {{post.poster.name}}
               </span>
               <span>
                 <em am-time-ago="post.created_at" class="time-ago"></em>
