@@ -11,14 +11,4 @@ function UsersController($scope, $mdDialog, User) {
       });
   };
 
-  $scope.signIn = function(user) {
-    User.signIn(user)
-      .then(function() {
-        $mdDialog.hide();
-      })
-      .catch(function(response) {
-        $scope.authResponse = response.errors;
-      });
-  };
-
 };

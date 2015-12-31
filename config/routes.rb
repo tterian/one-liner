@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/profile/*all' => "pages#home"
   get '/settings/account' => "pages#home"
+  get '/messages' => "pages#home"
 
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
       resources :comments,    only: [:index, :show, :create]
     end
     resources :relationships, only: [:create, :destroy]
+    resources :messages,      only: [:index, :create, :destroy]
   end
 
 end

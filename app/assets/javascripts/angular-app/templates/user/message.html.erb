@@ -101,25 +101,31 @@
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
 
       <md-card-title>
-        <img ng-src="{{currentProfile.image}}" class="md-avatar" alt="{{currentProfile.name}}" />
+        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
         <md-card-title-text>
-          <span class="md-title md-user-title">{{currentProfile.name}}</span>
-          <span class="md-subhead md-user-title">{{currentProfile.bio}}</span>
+          <span class="md-title md-user-title">{{user.name}}</span>
+          <span class="md-subhead md-user-title">{{user.bio}}</span>
         </md-card-title-text>
       </md-card-title>
       
       <md-divider></md-divider>
+      
+      <div class="md-user-info" layout="row" layout-align="center">
+        <div class="md-user-info-item">
+          <span class="md-subhead">POSTS</span>
+          <h3 class="md-subhead">{{user.post_count}}</h3>
+        </div>
 
-      <div class="md-subhead md-user-joined">
-        <p><em>
-          <span>joined {{currentProfile.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
-        </em></p>
+        <div class="md-user-info-item">
+          <span class="md-subhead">FOLLOWING</span>
+          <h3 class="md-subhead">{{user.follower_count}}</h3> 
+        </div>
+
+        <div class="md-user-info-item">
+          <span class="md-subhead">FOLLOWERS</span>
+          <h3 class="md-subhead">{{user.following_count}}</h3>
+        </div>
       </div>
-
-      <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
-                 ng-click="showSendMessage($event)">
-        Send Message
-      </md-button>
 
     </md-card>
 
@@ -133,86 +139,19 @@
 
   </div>  
 
-  <div class="md-posts" flex="40" flex-xs="100" layout="column">
-
-    <div class="md-user-info" layout="row" layout-align="center">
-      <div class="md-user-info-item">
-        <span class="md-subhead">POSTS</span>
-        <h3 class="md-subhead">{{posts.length}}</h3>
+  <md-list class="md-posts" flex="40" flex-xs="100">
+    <md-subheader class="md-no-sticky">My messages</md-subheader>
+    <md-list-item class="md-3-line" ng-repeat="message in messages">
+      <img ng-src="{{message.sender.image}}" class="md-avatar" alt="{{message.sender.name}}" />
+      <div class="md-list-item-text" layout="column">
+        <h3>{{message.sender.name}}</h3>
+        <h4>{{message.content}}</h4>
+        <p><em am-time-ago="message.created_at" class="time-ago"></em></p>
       </div>
+      <md-divider ></md-divider>
+    </md-list-item>
 
-      <div class="md-user-info-item">
-        <span class="md-subhead">FOLLOWING</span>
-        <h3 class="md-subhead">{{currentProfile.following.length}}</h3>
-      </div>
-
-      <div class="md-user-info-item">
-        <span class="md-subhead">FOLLOWERS</span>
-        <h3 class="md-subhead">{{currentProfile.followers.length}}</h3>
-      </div>
-    </div>
-
-
-    <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
-      <div layout="column">
-
-        <div class="" layout="row">
-          <img ng-src="{{post.user.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
-
-          <div class="md-post-header" layout="column">
-            <h3>
-              <span class="md-post-owner">
-                {{post.user.name}}
-              </span>
-              <span>
-                <em am-time-ago="post.created_at" class="time-ago"></em>
-              </span>
-            </h3>
-            <p>{{post.content}}</p>
-          </div>
-          
-        </div>
-
-        <md-divider></md-divider>
-
-        <md-card-actions layout="row">
-
-          <md-card-icon-actions>
-            <md-button class="md-icon-button md-comment-icon" aria-label="Comment">
-              <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
-            </md-button>
-          </md-card-icon-actions>
-
-          <md-menu md-position-mode="target-right target" >
-            <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-              <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
-            </md-button>
-
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button>
-                    <div layout="row">
-                      <p flex>Block</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-
-              <md-menu-item ng-show="user.id == post.user_id">
-                <md-button ng-click="deletePost(post)">
-                    <div layout="row">
-                      <p flex>Delete Post</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-
-        </md-card-actions>
-        
-      </div>
-    </md-card>
-
-  </div>
+  </md-list>
 
   <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
 

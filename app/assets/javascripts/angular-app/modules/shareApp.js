@@ -19,10 +19,12 @@ angular
   .factory('User', User)
   .factory('Account', Account)
   .factory('Post', Post)
+  .factory('Message', Message)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
   .controller('SettingsController', SettingsController)
+  .controller('MessagesController', MessagesController)
   .controller('UsersController', UsersController);
 
 //Config routes
@@ -39,6 +41,10 @@ function routeProvider($routeProvider, $locationProvider) {
     .when('/settings/account', {
       controller: 'SettingsController',
       templateUrl: 'assets/angular-app/templates/user/setting.html.erb'      
+    })
+    .when('/messages', {
+      controller: 'MessagesController',
+      templateUrl: 'assets/angular-app/templates/user/message.html.erb'      
     })
     .otherwise({
       redirectTo: '/'

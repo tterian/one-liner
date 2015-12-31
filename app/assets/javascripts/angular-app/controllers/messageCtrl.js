@@ -1,25 +1,55 @@
-function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Account, Post) {
+function MessagesController($scope, $location, $mdDialog, User, Message) {
 
-  Account.get($routeParams.id).$promise
-    .then(function(response) {
-      $scope.currentProfile = response;
-      $scope.posts = response.posts;
-    });
+  $scope.posts = Post.all;
+  $scope.messages = Message.all;
 
+  $scope.addPost = function(post) {
+    if ($scope.posts.length == 0) {
+      var lastPost = 0;
+    } else {
+      var lastPost = $scope.posts[$scope.posts.length - 1];
+    }
+
+    var newPost = {
+      id:           lastPost.id + 1,
+      content:      post.content,
+      user_id:      $scope.user.id,
+      user:         $scope.user,
+      created_at:   new Date(),
+      comments:     []
+    };
+
+    Post.create(newPost).$promise
+      .then(function() {
+        $scope.posts.push(newPost);
+        $scope.post = '';
+      });
+  };
 
   $scope.deletePost = function(post) {
 
   }
 
-  $scope.showSignIn = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/signin.html.erb',
-      targetEvent: ev
-    });
+  $scope.sendMessage = function(message) {
+    var m = {
+      sender_id: $scope.currentProfile.id,
+      user_id:   $scope.user.id,
+      content:   message.content
+    }
+    Message.create(m).$promise
+      .then(function() {
+        $mdDialog.hide();
+      });
+  }
+
+  $scope.signIn = function(user) {
+    User.signIn(user)
+      .then(function() {
+        $mdDialog.hide();
+      })
+      .catch(function(response) {
+        $scope.authResponse = response.errors;
+      });
   };
 
   $scope.showSignUp = function(ev) {
@@ -43,29 +73,6 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Ac
       targetEvent: ev
     });
   };
-
-  $scope.showPost = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'PostsController',
-      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
-      targetEvent: ev
-    });
-  };
-
-  $scope.showSendMessage = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'MessagesController',
-      templateUrl: 'assets/angular-app/templates/message/new.html.erb',
-      targetEvent: ev
-    });    
-  }
-
 
 
   $scope.signOut = function() {
