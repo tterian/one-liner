@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /api/messages
   # Get all the messages
   def index
-    messages = current_user.messages
+    messages = Message.where(user_id: current_user.id)
     render json: messages
   end
 

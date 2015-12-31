@@ -32,12 +32,20 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
 
   $scope.sendMessage = function(message) {
     var m = {
-      sender_id: $scope.currentProfile.id,
-      user_id:   $scope.user.id,
-      content:   message.content
+      sender_id:  $scope.user.id,
+      user_id:    $scope.currentProfile.id,
+      content:    message.content,
+      created_at: new Date(),
+      sender: {
+        id:    $scope.user.id,
+        name:  $scope.user.name,
+        image: $scope.user.image,
+      }
     }
+    console.log(m)
     Message.create(m).$promise
       .then(function() {
+        $scope.messages.push(m);
         $mdDialog.hide();
       });
   }
