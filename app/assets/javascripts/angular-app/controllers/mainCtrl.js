@@ -1,8 +1,9 @@
-function MainController($scope, $location, $mdDialog, User, Post) {
+function MainController($scope, $window, $location, $mdDialog, User, Post) {
 
   $scope.posts = Post.all;
 
   $scope.addPost = function(post) {
+    var user = $scope.user;
 
     if ($scope.posts.length == 0) {
       var lastPost = 0;
@@ -14,7 +15,7 @@ function MainController($scope, $location, $mdDialog, User, Post) {
       id:           lastPost.id + 1,
       content:      post.content,
       user_id:      $scope.user.id,
-      user:         $scope.user,
+      user:         user,
       created_at:   new Date(),
       comments:     []
     };
@@ -64,8 +65,11 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
 
   $scope.signOut = function() {
-    User.signOut();
-    $location.path('/');
+    User.signOut().then(function() {
+        $location.path('/');
+        // $window.location.reload();
+      });
+
   };
 
   $scope.closeDialog = function(ev) {
@@ -101,6 +105,5 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     var path = '/messages';
     $location.path(path);
   }
-
 
 };
