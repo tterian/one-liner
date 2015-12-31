@@ -42,7 +42,6 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
         image: $scope.user.image,
       }
     }
-    console.log(m)
     Message.create(m).$promise
       .then(function() {
         $scope.messages.push(m);
