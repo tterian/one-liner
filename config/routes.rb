@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :posts,         only: [:index, :show, :create] do
       resources :comments,    only: [:index, :show, :create]
     end
-    resources :relationships, only: [:create, :destroy]
+    resources :relationships, only: [:index, :create, :destroy]
     resources :messages,      only: [:index, :create, :destroy]
   end
 

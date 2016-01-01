@@ -116,9 +116,19 @@
         </em></p>
       </div>
 
+      <md-button ng-show="isFollowed" ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Follow"
+                 ng-click="followUser(user.id, currentProfile.id)">
+        Follow
+      </md-button>
+
+      <md-button ng-hide="isFollowed" ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Follow"
+                 ng-click="unfollowUser(user.id, currentProfile.id)">
+        Unfollow
+      </md-button>
+
       <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
                  ng-click="showSendMessage($event)">
-        Send Message
+        Direct Message
       </md-button>
 
     </md-card>

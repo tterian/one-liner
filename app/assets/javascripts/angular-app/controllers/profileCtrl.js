@@ -1,10 +1,23 @@
-function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Account, Post) {
+function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Relationship, Account, Post) {
+
+  $scope.relationship = Relationship.all;
+  $scope.isFollowed = '0';
 
   Account.get($routeParams.id).$promise
     .then(function(response) {
       $scope.currentProfile = response;
       $scope.posts = response.posts;
+
+      for ( var i = 0; i < $scope.currentProfile.followers.length; i++ ) {
+        if ( $scope.currentProfile.followers[i].id == $scope.user.id ) {
+          $scope.isFollowed = '1';
+        }
+      }
+      console.log($scope.isFollowed)
     });
+
+
+
 
 
   $scope.deletePost = function(post) {
@@ -64,6 +77,15 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Ac
       templateUrl: 'assets/angular-app/templates/message/new.html.erb',
       targetEvent: ev
     });    
+  }
+
+  $scope.followUser = function(follower, followed) {
+    Relationship.follow(follower, followed).$promise
+      .then(function() {
+        $scope.currentProfile.following = $scope.currentProfile.following + 1;
+        $scope.isFollowed = '1';
+        console.log("wheee")
+      });
   }
 
 

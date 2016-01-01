@@ -19,6 +19,7 @@ angular
   .factory('User', User)
   .factory('Account', Account)
   .factory('Post', Post)
+  .factory('Relationship', Relationship)  
   .factory('Message', Message)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
