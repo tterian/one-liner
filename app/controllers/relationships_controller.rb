@@ -11,8 +11,8 @@ class RelationshipsController < ApplicationController
   
   # POST /api/relationships
   # Add a new relationship
-  def create
-    relationship = Relationship.create(follower_id: params[:follower_id], followed_id: params[:followed_id])
+  def follow
+    relationship = Relationship.create(follower_id: current_user.id, followed_id: params[:followed_id])
 
     if relationship.save
       render json: relationship
@@ -21,18 +21,18 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  # DELETE /api/relationships/:id
+  # DELETE /api/relationships
   # delete a relationship
-  def destroy
-    relationship = Relationship.where(follower_id: params[:follower_id], followed_id: params[:followed_id])
-    relationship.destroy
+  def unfollow
+    Relationship.where(follower_id: current_user.id, followed_id: params[:followed_id]).first.destroy
+    render json: { message: "Relationship destroyed successfully" }
   end
 
   
   private
 
   def relationship_params
-    params.require(:params).permit(:follower_id, :followed_id)
+    params.require(:params).permit(:followed_id)
   end
 
 end

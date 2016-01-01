@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       resources :comments,    only: [:index, :show, :create]
     end
     resources :relationships, only: [:index, :create, :destroy]
+    post '/relationships/follow/:followedId', to: 'relationships#follow'
+    post '/relationships/unfollow/:followedId', to: 'relationships#unfollow'
+
     resources :messages,      only: [:index, :create, :destroy]
   end
 

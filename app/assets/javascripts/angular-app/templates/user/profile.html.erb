@@ -116,13 +116,13 @@
         </em></p>
       </div>
 
-      <md-button ng-show="isFollowed" ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Follow"
-                 ng-click="followUser(user.id, currentProfile.id)">
+      <md-button ng-show="currentProfile.id != user.id && isFollowed == '0'" class="md-raised" aria-label="Follow"
+                 ng-click="followUser(currentProfile.id)">
         Follow
       </md-button>
 
-      <md-button ng-hide="isFollowed" ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Follow"
-                 ng-click="unfollowUser(user.id, currentProfile.id)">
+      <md-button ng-show="currentProfile.id != user.id && isFollowed == '1'" class="md-raised" aria-label="Follow"
+                 ng-click="unfollowUser(currentProfile.id)">
         Unfollow
       </md-button>
 

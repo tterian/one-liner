@@ -13,11 +13,7 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
           $scope.isFollowed = '1';
         }
       }
-      console.log($scope.isFollowed)
     });
-
-
-
 
 
   $scope.deletePost = function(post) {
@@ -79,15 +75,21 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
     });    
   }
 
-  $scope.followUser = function(follower, followed) {
-    Relationship.follow(follower, followed).$promise
+  $scope.followUser = function(followedId) {
+    Relationship.follow(followedId).$promise
       .then(function() {
         $scope.currentProfile.following = $scope.currentProfile.following + 1;
         $scope.isFollowed = '1';
-        console.log("wheee")
       });
   }
 
+  $scope.unfollowUser = function(followedId) {
+    Relationship.unfollow(followedId).$promise
+      .then(function() {
+        $scope.currentProfile.following = $scope.currentProfile.following - 1;
+        $scope.isFollowed = '0';
+      });
+  }
 
 
   $scope.signOut = function() {

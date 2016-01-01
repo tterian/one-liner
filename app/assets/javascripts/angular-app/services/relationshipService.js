@@ -1,20 +1,26 @@
 function Relationship($resource) {
 
-  var relationships = $resource('/api/relationships');
+  var relationships = $resource('/api/relationships')
+
+  var relationshipsFollow = $resource('/api/relationships/follow/:followed_id', 
+    {
+      followed_id: '@followed_id'
+    });
+
+  var relationshipsUnfollow = $resource('/api/relationships/unfollow/:followed_id', 
+    {
+      followed_id: '@followed_id'
+    });
 
   var Relationship = {
     all: relationships.query(),
 
-    follow: function(followerId, followedId) {
-      var f = {
-        follower_id: followerId,
-        followed_id: followedId
-      }
-      return relationships.save(f);
+    follow: function(followedId) {
+      return relationshipsFollow.save({'followed_id': followedId});
     },
 
-    unfollow: function(post) {
-      return relationships.delete({}, {'postId': postId});
+    unfollow: function(followedId) {
+      return relationshipsUnfollow.save({'followed_id': followedId});
     }
 
   };
