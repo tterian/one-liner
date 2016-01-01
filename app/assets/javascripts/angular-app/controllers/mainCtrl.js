@@ -82,9 +82,9 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
 // Redirects
 
-  $scope.redirectToProfile = function(userId) {
+  $scope.redirectToProfile = function(user) {
 //  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var path = '/profile/'+userId;
+    var path = '/profile/'+user.id;
     $location.path(path);
   }
 
