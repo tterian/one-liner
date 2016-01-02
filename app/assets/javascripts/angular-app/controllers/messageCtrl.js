@@ -1,12 +1,12 @@
-function MessagesController($scope, $location, $mdDialog, User, Message) {
+function MessagesController($scope, $location, $mdDialog, User, Conversation, Message) {
 
   $scope.posts = Post.all;
-  $scope.conversations = Message.all;
+  $scope.conversations = Conversation.all;
 
   $scope.getConversation = function(conversationId) {
-    Message.getConversation(conversationId).$promise
+    Conversation.getConversation(conversationId).$promise
       .then(function(response) {
-        $scope.messages = response;
+        $scope.messages = response.messages;
       });
   }
 
