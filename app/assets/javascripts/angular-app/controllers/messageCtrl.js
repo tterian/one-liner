@@ -1,7 +1,14 @@
 function MessagesController($scope, $location, $mdDialog, User, Message) {
 
   $scope.posts = Post.all;
-  $scope.messages = Message.all;
+  $scope.conversations = Message.all;
+
+  $scope.getConversation = function(conversationId) {
+    Message.getConversation(conversationId).$promise
+      .then(function(response) {
+        $scope.messages = response;
+      });
+  }
 
   $scope.addPost = function(post) {
     if ($scope.posts.length == 0) {
@@ -33,11 +40,8 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
   $scope.sendMessage = function(message) {
     var m = {
       recipient_id: $scope.currentProfile.id,
-      sender_id:    $scope.user.id,
       content:      message.content,
-      created_at:   new Date(),
-      recipient:    $scope.currentProfile,
-      sender:       $scope.user
+      subject:      message.subject
     }
     Message.create(m).$promise
       .then(function() {

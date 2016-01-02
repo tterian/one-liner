@@ -1,5 +1,6 @@
-function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Relationship, Account, Post) {
+function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Relationship, Message, Account, Post) {
 
+  $scope.messages = Message.all;
   $scope.relationship = Relationship.all;
   $scope.isFollowed = '0';
 

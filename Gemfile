@@ -12,6 +12,7 @@ gem 'httparty'
 gem 'devise_token_auth'
 gem 'pg'
 gem 'public_activity'
+gem "mailboxer"
 gem 'bower-rails'
 
 gem 'spring', :group => :development

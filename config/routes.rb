@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     post '/relationships/follow/:followedId', to: 'relationships#follow'
     post '/relationships/unfollow/:followedId', to: 'relationships#unfollow'
 
-    resources :messages,      only: [:index, :create, :destroy]
+    resources :conversations, only: [:index, :show, :destroy] do
+      member do
+        post :reply
+      end
+    end
+    resources :messages, only: [:create]
     resources :notifications,      only: [:index, :update]
   end
 

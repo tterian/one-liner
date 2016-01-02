@@ -47,7 +47,7 @@ function routeProvider($routeProvider, $locationProvider) {
     })
     .when('/messages', {
       controller: 'MessagesController',
-      templateUrl: 'assets/angular-app/templates/user/message.html.erb'      
+      templateUrl: 'assets/angular-app/templates/message/main.html.erb'      
     })
     .when('/notifications', {
       controller: 'NotificationsController',

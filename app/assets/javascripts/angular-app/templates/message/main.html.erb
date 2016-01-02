@@ -98,60 +98,37 @@
   <span ng-hide="user.signedIn" flex="15"></span>
   <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
     <md-card>
-      <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
 
-      <md-card-title>
-        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-        <md-card-title-text>
-          <span class="md-title md-user-title">{{user.name}}</span>
-          <span class="md-subhead md-user-title">{{user.bio}}</span>
-        </md-card-title-text>
-      </md-card-title>
-      
-      <md-divider></md-divider>
-      
-      <div class="md-user-info" layout="row" layout-align="center">
-        <div class="md-user-info-item">
-          <span class="md-subhead">POSTS</span>
-          <h3 class="md-subhead">{{user.post_count}}</h3>
-        </div>
+      <md-list>
+        <md-subheader class="md-no-sticky">Conversations</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="conversation in conversations"
+                                        ng-click="getConversation(conversation.id)">
+          <div class="md-list-item-text" layout="column">
+            <p>{{conversation.subject}}</p>
+          </div>
+          <md-divider ></md-divider>
+        </md-list-item>
+      </md-list>
 
-        <div class="md-user-info-item">
-          <span class="md-subhead">FOLLOWING</span>
-          <h3 class="md-subhead">{{user.follower_count}}</h3> 
-        </div>
-
-        <div class="md-user-info-item">
-          <span class="md-subhead">FOLLOWERS</span>
-          <h3 class="md-subhead">{{user.following_count}}</h3>
-        </div>
-      </div>
-
-    </md-card>
-
-    <md-card>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-title">User ratings/comments</span>
-        </md-card-title-text>
-      </md-card-title>
     </md-card>
 
   </div>  
 
-  <md-list class="md-posts" flex="40" flex-xs="100">
-    <md-subheader class="md-no-sticky">My messages</md-subheader>
-    <md-list-item class="md-3-line" ng-repeat="message in messages">
-      <img ng-src="{{message.sender.image}}" class="md-avatar" alt="{{message.sender.name}}" />
-      <div class="md-list-item-text" layout="column">
-        <h3>{{message.sender.name}}</h3>
-        <h4>{{message.content}}</h4>
-        <p><em am-time-ago="message.created_at" class="time-ago"></em></p>
-      </div>
-      <md-divider ></md-divider>
-    </md-list-item>
+  <md-card class="md-messages" flex="40" flex-xs="100" layout="column">
+    
+    <md-list>
+      <md-subheader class="md-no-sticky">Messages</md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="message in messages">
+        <img ng-src="{{notification.owner.image}}" class="md-avatar" alt="{{notification.owner.id}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{notification.owner.name}}</h3>
+          <h4>{{notification.owner.name}} {{notification.content}}</h4>
+        </div>
+        <md-divider ></md-divider>
+      </md-list-item>
+    </md-list>
 
-  </md-list>
+  </md-card>
 
   <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
 
