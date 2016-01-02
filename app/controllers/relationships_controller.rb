@@ -12,7 +12,8 @@ class RelationshipsController < ApplicationController
   # POST /api/relationships
   # Add a new relationship
   def follow
-    relationship = Relationship.create(follower_id: current_user.id, followed_id: params[:followed_id])
+    @relationship = Relationship.create(follower_id: current_user.id, followed_id: params[:followed_id])
+    @relationship.create_activity key: 'relationship.follow', owner: current_user, recipient: User.find(params[:followed_id])
 
     if relationship.save
       render json: relationship
@@ -24,7 +25,9 @@ class RelationshipsController < ApplicationController
   # DELETE /api/relationships
   # delete a relationship
   def unfollow
-    Relationship.where(follower_id: current_user.id, followed_id: params[:followed_id]).first.destroy
+    @relationship = Relationship.where(follower_id: current_user.id, followed_id: params[:followed_id]).first
+    @relationship.create_activity key: 'relationship.unfollow', owner: current_user, recipient: User.find(params[:followed_id])    
+    @relationship.destroy
     render json: { message: "Relationship destroyed successfully" }
   end
 
