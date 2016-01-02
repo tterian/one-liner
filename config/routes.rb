@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/profile/*all' => "pages#home"
   get '/settings/account' => "pages#home"
   get '/messages' => "pages#home"
+  get '/notifications' => "pages#home"
 
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     post '/relationships/unfollow/:followedId', to: 'relationships#unfollow'
 
     resources :messages,      only: [:index, :create, :destroy]
+    resources :notifications,      only: [:index, :update]
   end
 
 end

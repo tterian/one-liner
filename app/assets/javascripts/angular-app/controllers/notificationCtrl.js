@@ -1,9 +1,11 @@
-function MessagesController($scope, $location, $mdDialog, User, Message) {
+function NotificationsController($scope, $location, $mdDialog, User, Notification, Post) {
 
   $scope.posts = Post.all;
-  $scope.messages = Message.all;
+  $scope.notifications = Notification.all;
 
   $scope.addPost = function(post) {
+    var user = $scope.user;
+
     if ($scope.posts.length == 0) {
       var lastPost = 0;
     } else {
@@ -13,8 +15,11 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
     var newPost = {
       id:           lastPost.id + 1,
       content:      post.content,
+      poster: {
+        image: $scope.user.image,
+        name:  $scope.user.name
+      },
       user_id:      $scope.user.id,
-      user:         $scope.user,
       created_at:   new Date(),
       comments:     []
     };
@@ -28,22 +33,6 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
 
   $scope.deletePost = function(post) {
 
-  }
-
-  $scope.sendMessage = function(message) {
-    var m = {
-      recipient_id: $scope.currentProfile.id,
-      sender_id:    $scope.user.id,
-      content:      message.content,
-      created_at:   new Date(),
-      recipient:    $scope.currentProfile,
-      sender:       $scope.user
-    }
-    Message.create(m).$promise
-      .then(function() {
-        $scope.messages.push(m);
-        $mdDialog.hide();
-      });
   }
 
   $scope.signIn = function(user) {
@@ -80,8 +69,11 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
 
 
   $scope.signOut = function() {
-    User.signOut();
-    $location.path('/');
+    User.signOut().then(function() {
+        $location.path('/');
+        // $window.location.reload();
+      });
+
   };
 
   $scope.closeDialog = function(ev) {
@@ -93,8 +85,7 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
 
   $scope.redirectToProfile = function(user) {
 //  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var userId = user.id;
-    var path = '/profile/'+userId;
+    var path = '/profile/'+user.id;
     $location.path(path);
   }
 
@@ -117,6 +108,5 @@ function MessagesController($scope, $location, $mdDialog, User, Message) {
     var path = '/messages';
     $location.path(path);
   }
-
 
 };

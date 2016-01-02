@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include ActionView::Layouts
   include ActionController::ImplicitRender
   include DeviseTokenAuth::Concerns::SetUserByToken
+  include PublicActivity::StoreController
 
   respond_to :json
 

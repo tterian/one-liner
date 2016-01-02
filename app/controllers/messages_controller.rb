@@ -5,14 +5,14 @@ class MessagesController < ApplicationController
   # GET /api/messages
   # Get all the messages
   def index
-    messages = Message.where(user_id: current_user.id)
+    messages = Message.where(sender_id: current_user.id)
     render json: messages
   end
 
   # message /api/messages
   # Add a new message
   def create
-    message = Message.create(content: params[:content], user_id: params[:user_id], sender_id: params[:sender_id])
+    message = Message.create(content: params[:content], recipient_id: params[:recipient_id], sender_id: current_user.id)
 
     if message.save
       render json: message
@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:params).permit(:sender_id, :content, :user_id)
+    params.require(:params).permit(:recipient_id, :content)
   end
 
 end

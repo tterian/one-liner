@@ -21,11 +21,13 @@ angular
   .factory('Post', Post)
   .factory('Relationship', Relationship)  
   .factory('Message', Message)
+  .factory('Notification', Notification)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
   .controller('SettingsController', SettingsController)
   .controller('MessagesController', MessagesController)
+  .controller('NotificationsController', NotificationsController)
   .controller('UsersController', UsersController);
 
 //Config routes
@@ -46,6 +48,10 @@ function routeProvider($routeProvider, $locationProvider) {
     .when('/messages', {
       controller: 'MessagesController',
       templateUrl: 'assets/angular-app/templates/user/message.html.erb'      
+    })
+    .when('/notifications', {
+      controller: 'NotificationsController',
+      templateUrl: 'assets/angular-app/templates/notification/main.html.erb'      
     })
     .otherwise({
       redirectTo: '/'

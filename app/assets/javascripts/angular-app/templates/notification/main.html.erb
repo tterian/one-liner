@@ -23,6 +23,7 @@
     </md-button>
 
     <span ng-show="user.signedIn" flex="20"></span>
+    <span ng-hide="user.signedIn" flex="15"></span>
 
     <div ng-hide="user.signedIn" flex="40" class="md-searchbox">
       <div class="md-whiteframe-z1 md-searchbox-wrap">
@@ -89,8 +90,6 @@
 
 </md-toolbar>
 
-
-
 <div class="md-main-content" layout="row">
 
   <span flex="15"></span>
@@ -99,134 +98,61 @@
   <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
     <md-card>
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
-
-      <md-card-title>
-        <img ng-src="{{currentProfile.image}}" class="md-avatar" alt="{{currentProfile.name}}" />
-        <md-card-title-text>
-          <span class="md-title md-user-title">{{currentProfile.name}}</span>
-          <span class="md-subhead md-user-title">{{currentProfile.bio}}</span>
-        </md-card-title-text>
-      </md-card-title>
       
-      <md-divider></md-divider>
-
-      <div class="md-subhead md-user-joined">
-        <p><em>
-          <span>joined {{currentProfile.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
-        </em></p>
-      </div>
-
-      <md-button ng-show="currentProfile.id != user.id && isFollowed == '0'" class="md-raised" aria-label="Follow"
-                 ng-click="followUser(currentProfile.id)">
-        Follow
-      </md-button>\
-
-      <md-button ng-show="currentProfile.id != user.id && isFollowed == '1'" class="md-raised" aria-label="Follow"
-                 ng-click="unfollowUser(currentProfile.id)">
-        Unfollow
-      </md-button>
-
-      <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
-                 ng-click="showSendMessage($event)">
-        Direct Message
-      </md-button>
-
-    </md-card>
-
-    <md-card>
       <md-card-title>
+        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
         <md-card-title-text>
-          <span class="md-title">User ratings/comments</span>
+          <span class="md-title md-user-title">{{user.name}}</span>
+          <span class="md-subhead md-user-title">{{user.bio}}</span>
         </md-card-title-text>
       </md-card-title>
-    </md-card>
 
-  </div>  
-
-  <div class="md-posts" flex="40" flex-xs="100" layout="column">
-
-    <div class="md-user-info" layout="row" layout-align="center">
-      <div class="md-user-info-item">
-        <span class="md-subhead">POSTS</span>
-        <h3 class="md-subhead">{{posts.length}}</h3>
-      </div>
-
-      <div class="md-user-info-item">
-        <span class="md-subhead">FOLLOWING</span>
-        <h3 class="md-subhead">{{currentProfile.following.length}}</h3>
-      </div>
-
-      <div class="md-user-info-item">
-        <span class="md-subhead">FOLLOWERS</span>
-        <h3 class="md-subhead">{{currentProfile.followers.length}}</h3>
-      </div>
-    </div>
-
-
-    <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
-      <div layout="column">
-
-        <div class="" layout="row">
-          <img ng-src="{{post.poster.image}}" class="md-poster-avatar" alt="{{post.user_id}}" />
-
-          <div class="md-post-header" layout="column">
-            <h3>
-              <span class="md-post-owner">
-                {{post.poster.name}}
-              </span>
-              <span>
-                <em am-time-ago="post.created_at" class="time-ago"></em>
-              </span>
-            </h3>
-            <p>{{post.content}}</p>
-          </div>
-          
+      <md-divider></md-divider>
+      
+      <div class="md-user-info" layout="row" layout-align="center">
+        <div class="md-user-info-item">
+          <span class="md-subhead">POSTS</span>
+          <h3 class="md-subhead">{{user.post_count}}</h3>
         </div>
 
-        <md-divider></md-divider>
+        <div class="md-user-info-item">
+          <span class="md-subhead">FOLLOWING</span>
+          <h3 class="md-subhead">{{user.follower_count}}</h3> 
+        </div>
 
-        <md-card-actions layout="row">
-
-          <md-card-icon-actions>
-            <md-button class="md-icon-button md-comment-icon" aria-label="Comment">
-              <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
-            </md-button>
-          </md-card-icon-actions>
-
-          <md-menu md-position-mode="target-right target" >
-            <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-              <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
-            </md-button>
-
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button>
-                    <div layout="row">
-                      <p flex>Block</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-
-              <md-menu-item ng-show="user.id == post.user_id">
-                <md-button ng-click="deletePost(post)">
-                    <div layout="row">
-                      <p flex>Delete Post</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-
-        </md-card-actions>
-        
+        <div class="md-user-info-item">
+          <span class="md-subhead">FOLLOWERS</span>
+          <h3 class="md-subhead">{{user.following_count}}</h3>
+        </div>
       </div>
-    </md-card>
 
-  </div>
+    </md-card>
+  </div>  
+
+  <md-card class="md-notifications" flex="40" flex-xs="100" layout="column">
+
+    <md-card-title>
+      <md-card-title-text>
+          <span class="md-headline">Notifications</span>
+          <span class="md-subhead">Activities</span>
+      </md-card-title-text>
+    </md-card-title>
+    
+    <md-list>
+      <md-list-item class="md-3-line" ng-repeat="notification in notifications">
+        <img ng-src="{{notification.owner.image}}" class="md-avatar" alt="{{notification.owner.id}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{notification.owner.name}}</h3>
+          <h4>{{notification.owner.name}} sent you a message</h4>
+        </div>
+      </md-list-item>
+      <md-divider ></md-divider>
+    </md-list>
+
+  </md-card>
 
   <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
-
-    <md-card>
+    <md-card ng-show="user.signedIn">
       <md-card-title>
         <md-card-title-text>
           <span class="md-title">Who to follow?</span>
@@ -276,13 +202,21 @@
       </md-card-content>
 
       <md-card-actions layout="row" layout-align="end center">
-        <md-button>Sign in</md-button>
+        <md-button ng-click="signIn(user)">Sign in</md-button>
       </md-card-actions>
 
     </md-card>
 
+<!--     <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
+      Sign In
+    </md-button> -->
+
+  </div>
+
 
 
   </div>
+
+  <span flex="15"></span>
 
 </div>
