@@ -4,9 +4,24 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
   $scope.conversations = Conversation.all;
 
   $scope.getConversation = function(conversationId) {
-    Conversation.getConversation(conversationId).$promise
+    Conversation.get(conversationId).$promise
       .then(function(response) {
+        $scope.conversation = response;
         $scope.messages = response.messages;
+      });
+  }
+
+  $scope.replyToMessage = function(conversationId, message) {
+    var newMessage = {
+      subject:    $scope.conversation.subject,
+      body:       message.body,
+      image:      $scope.user.image,
+      created_at: new Date()
+    };    
+    Conversation.reply(conversationId, message).$promise
+      .then(function(response) {
+        $scope.messages.push(newMessage);
+        $scope.message.body = "";
       });
   }
 
@@ -40,12 +55,11 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
   $scope.sendMessage = function(message) {
     var m = {
       recipient_id: $scope.currentProfile.id,
-      content:      message.content,
-      subject:      message.subject
+      content:      message.content
     }
     Message.create(m).$promise
       .then(function() {
-        $scope.messages.push(m);
+        $scope.conversations.push(m);
         $mdDialog.hide();
       });
   }

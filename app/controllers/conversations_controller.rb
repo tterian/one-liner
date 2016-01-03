@@ -12,16 +12,14 @@ class ConversationsController < ApplicationController
   # Get a conversation
   def show
     @conversation = current_user.mailbox.conversations.find(params[:id])
-#    @receipts = @conversation.receipts_for current_user
-#    render json: @receipts
     render json: @conversation
   end
 
   # POST /api/conversations/:id
   # Reply to a conversation
   def reply
-    @conversation = @mailbox.conversations.find(params[:id])
-    current_user.reply_to_conversation(@conversation, params[:body])
+    @conversation = current_user.mailbox.conversations.find(params[:id])
+    render json: current_user.reply_to_conversation(@conversation, params[:body])
   end
 
 end

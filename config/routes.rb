@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     post '/relationships/follow/:followedId', to: 'relationships#follow'
     post '/relationships/unfollow/:followedId', to: 'relationships#unfollow'
 
-    resources :conversations, only: [:index, :show, :destroy] do
+    resources :conversations, only: [:index, :show] do
       member do
         post :reply
       end

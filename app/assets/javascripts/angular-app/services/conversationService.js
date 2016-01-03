@@ -13,12 +13,12 @@ function Conversation($resource) {
   var Conversation = {
     all: conversations.query(),
 
-    getConversation: function(conversationId) {
+    get: function(conversationId) {
       return conversations.get({'conversationId': conversationId});
     },
 
-    replyConversation: function(conversationId) {
-      return conversation_reply.save({'conversationId': conversationId});
+    reply: function(conversationId, message) {
+      return conversation_reply.save({'conversationId': conversationId, 'body': message.body});
     }
 
   };
