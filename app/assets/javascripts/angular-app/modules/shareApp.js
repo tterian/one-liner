@@ -20,6 +20,7 @@ angular
   .factory('Account', Account)
   .factory('Post', Post)
   .factory('Relationship', Relationship)
+  .factory('Rating', Rating)
   .factory('Conversation', Conversation)
   .factory('Message', Message)
   .factory('Notification', Notification)

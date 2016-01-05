@@ -136,9 +136,41 @@
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-title">User ratings/comments</span>
+          <span class="md-title">User Rating</span>
         </md-card-title-text>
       </md-card-title>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
+        <div layout>
+          <md-slider flex md-discrete ng-disabled="currentProfile.id == user.id" ng-model="rate" step="1" min="1" max="5" aria-label="rating">
+          </md-slider>
+        </div>
+
+        <div class="md-user-info-item">
+          <h3 class="md-subhead">Average rating</h3>
+          <p class="md-subhead">{{posts.length}}</p>
+        </div>
+
+      </md-card-content>
+
+      <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
+                 ng-click="updateRating(rate)">
+        Rate
+      </md-button>
+
+    </md-card>
+
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-title">User Comments</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-divider></md-divider>
+
     </md-card>
 
   </div>  
@@ -182,42 +214,6 @@
           </div>
           
         </div>
-
-        <md-divider></md-divider>
-
-        <md-card-actions layout="row">
-
-          <md-card-icon-actions>
-            <md-button class="md-icon-button md-comment-icon" aria-label="Comment">
-              <md-icon md-svg-icon="assets/svg/md-comment.svg"></md-icon>
-            </md-button>
-          </md-card-icon-actions>
-
-          <md-menu md-position-mode="target-right target" >
-            <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-              <md-icon md-svg-icon="assets/svg/md-more.svg"></md-icon>
-            </md-button>
-
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button>
-                    <div layout="row">
-                      <p flex>Block</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-
-              <md-menu-item ng-show="user.id == post.user_id">
-                <md-button ng-click="deletePost(post)">
-                    <div layout="row">
-                      <p flex>Delete Post</p>
-                    </div>
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-
-        </md-card-actions>
         
       </div>
     </md-card>
