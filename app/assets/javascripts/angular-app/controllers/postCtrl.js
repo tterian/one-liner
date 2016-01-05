@@ -11,8 +11,11 @@ function PostsController($scope, $mdDialog, Post) {
     var newPost = {
       id:           lastPost.id + 1,
       content:      post.content,
+      poster: {
+        image: $scope.user.image,
+        name:  $scope.user.name
+      },
       user_id:      $scope.user.id,
-      user:         $scope.user,
       created_at:   new Date(),
       comments:     []
     };
