@@ -10,7 +10,7 @@ class AccountSerializer < ActiveModel::Serializer
 
   def rating
     if Rating.where(ratee_id: object.id).count == 0
-      return 0
+      return {sum: 0, count: 0}
     else
       sum = 0
       count = Rating.where(ratee_id: object.id).count

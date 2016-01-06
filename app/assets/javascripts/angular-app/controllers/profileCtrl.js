@@ -11,8 +11,12 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
       $scope.posts = response.posts;
       var sum = response.rating.sum;
       $scope.count = response.rating.count;
-      $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
-      
+      if ( $scope.count == 0 ) {
+        $scope.average_rating = 0;        
+      } else {
+        $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
+      }
+
       for ( var i = 0; i < $scope.currentProfile.followers.length; i++ ) {
         if ( $scope.currentProfile.followers[i].id == $scope.user.id ) {
           $scope.isFollowed = '1';
@@ -22,6 +26,7 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
       Rating.get($scope.currentProfile.id).$promise
         .then(function(response) {
           if ( response.score != null ) {
+            $scope.oldScore = response.score;
             $scope.isRated = '1';
             $scope.score = response.score;
           }
@@ -38,6 +43,7 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
             sum = sum + score;
             $scope.count = $scope.count + 1;
             $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
+            $scope.oldScore = score;
           });
       }
 
@@ -49,7 +55,9 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
         };
         Rating.update(rate, $scope.currentProfile.id).$promise
           .then(function() {
-
+            sum = sum - $scope.oldScore + score;
+            $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
+            $scope.oldScore = score;
           });
       }
 

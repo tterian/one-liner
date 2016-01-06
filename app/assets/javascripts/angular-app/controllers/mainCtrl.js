@@ -34,6 +34,11 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
   }
 
+  $scope.getStarNumber = function(num) {
+    return new Array(Math.round(num * 100) / 100);   
+  }
+
+
   $scope.signIn = function(user) {
     User.signIn(user)
       .then(function() {

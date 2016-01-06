@@ -70,4 +70,22 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  def average_rating
+    if Rating.where(ratee_id: self.id).count == 0
+      return 0
+    else
+      sum = 0
+      ratings = Rating.where(ratee_id: self.id)
+      ratings.each do |rating|
+        sum = sum + rating.score.to_i
+      end
+      return sum/ratings.count
+    end
+  end
+
+  def reviews
+    Rating.where(ratee_id: self.id).count
+  end
+
+
 end
