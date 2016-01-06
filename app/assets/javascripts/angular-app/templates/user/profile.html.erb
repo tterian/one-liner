@@ -144,21 +144,27 @@
 
       <md-card-content>
         <div layout>
-          <md-slider flex md-discrete ng-disabled="currentProfile.id == user.id" ng-model="rate" step="1" min="1" max="5" aria-label="rating">
+          <md-slider flex md-discrete ng-disabled="currentProfile.id == user.id" ng-model="score" step="1" min="1" max="5" aria-label="rating">
           </md-slider>
         </div>
 
         <div class="md-user-info-item">
           <h3 class="md-subhead">Average rating</h3>
-          <p class="md-subhead">{{posts.length}}</p>
+          <p class="md-subhead">{{average_rating}}</p>
         </div>
 
       </md-card-content>
 
-      <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
-                 ng-click="updateRating(rate)">
+      <md-button ng-hide="currentProfile.id == user.id || isRated == '1'" class="md-raised" aria-label="Rate"
+                 ng-click="setRating(score)">
         Rate
       </md-button>
+
+      <md-button ng-hide="currentProfile.id == user.id || isRated != '1'" class="md-raised" aria-label="Rate"
+                 ng-click="updateRating(score)">
+        Update Rating
+      </md-button>
+
 
     </md-card>
 

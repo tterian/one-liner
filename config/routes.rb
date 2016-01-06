@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       get '/account/info/:id', to: 'devise_token_auth/accounts#info', as: :info
     end
 
-    resources :ratings,       only: [:index, :create, :update]
+    resources :ratings,       only: [:index, :show, :create, :update]
     resources :posts,         only: [:index, :show, :create]
     resources :relationships, only: [:index, :create, :destroy]
     post '/relationships/follow/:followedId', to: 'relationships#follow'

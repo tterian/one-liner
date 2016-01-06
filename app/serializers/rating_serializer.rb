@@ -1,5 +1,5 @@
 class RatingSerializer < ActiveModel::Serializer
 
-  attributes :id, :score, :user_id
+  attributes :id, :score, :rater_id, :ratee_id
 
 end

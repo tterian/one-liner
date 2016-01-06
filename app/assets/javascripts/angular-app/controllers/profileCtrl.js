@@ -1,21 +1,61 @@
-function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Relationship, Message, Account, Post) {
+function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Relationship, Message, Account, Rating, Post) {
 
   $scope.messages = Message.all;
   $scope.relationship = Relationship.all;
   $scope.isFollowed = '0';
+  $scope.isRated = '0';
 
   Account.get($routeParams.id).$promise
     .then(function(response) {
       $scope.currentProfile = response;
       $scope.posts = response.posts;
+      var sum = response.rating.sum;
+      var count = response.rating.count;
+      $scope.average_rating = Math.round(sum/count * 100) / 100;
+      
+      Rating.get($scope.currentProfile.id).$promise
+        .then(function(response) {
+          if ( response.score != null ) {
+            $scope.isRated = '1';
+            $scope.score = response.score;
+          }
+        });
 
       for ( var i = 0; i < $scope.currentProfile.followers.length; i++ ) {
         if ( $scope.currentProfile.followers[i].id == $scope.user.id ) {
           $scope.isFollowed = '1';
         }
       }
-    });
 
+      $scope.setRating = function(score) {
+        var rate = {
+          score:    score,
+          rater_id: $scope.user.id,
+          ratee_id: $scope.currentProfile.id
+        };
+        Rating.create(rate).$promise
+          .then(function() {
+            sum = sum + score;
+            count = count + 1;
+            $scope.average_rating = Math.round(sum/count * 100) / 100;
+          });
+      }
+
+      $scope.updateRating = function(score) {
+        var rate = {
+          score:    score,
+          rater_id: $scope.user.id,
+          ratee_id: $scope.currentProfile.id
+        };
+        Rating.update(rate, $scope.currentProfile.id).$promise
+          .then(function() {
+            sum = sum + score;
+            count = count + 1;
+            $scope.average_rating = Math.round(sum/count * 100) / 100;
+          });
+      }
+
+    });
 
   $scope.deletePost = function(post) {
 

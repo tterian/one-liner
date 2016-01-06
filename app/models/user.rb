@@ -10,11 +10,21 @@ class User < ActiveRecord::Base
   has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
+
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_many :raters, class_name: "Rating", dependent: :destroy
-  has_many :ratees, class_name: "Rating", dependent: :destroy
+
+  has_many :active_ratings,  class_name:  "Rating",
+                             foreign_key: "rater_id",
+                             dependent:   :destroy
+
+  has_many :passive_ratings, class_name:  "Rating",
+                             foreign_key: "ratee_id",
+                             dependent:   :destroy
+
+  has_many :raters, through: :active_ratings,  source: :rater
+  has_many :ratees, through: :passive_ratings, source: :ratee
 
   after_create :update_avatar
 
