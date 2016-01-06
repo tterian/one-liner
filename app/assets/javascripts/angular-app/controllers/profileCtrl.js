@@ -10,9 +10,15 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
       $scope.currentProfile = response;
       $scope.posts = response.posts;
       var sum = response.rating.sum;
-      var count = response.rating.count;
-      $scope.average_rating = Math.round(sum/count * 100) / 100;
+      $scope.count = response.rating.count;
+      $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
       
+      for ( var i = 0; i < $scope.currentProfile.followers.length; i++ ) {
+        if ( $scope.currentProfile.followers[i].id == $scope.user.id ) {
+          $scope.isFollowed = '1';
+        }
+      }
+
       Rating.get($scope.currentProfile.id).$promise
         .then(function(response) {
           if ( response.score != null ) {
@@ -20,12 +26,6 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
             $scope.score = response.score;
           }
         });
-
-      for ( var i = 0; i < $scope.currentProfile.followers.length; i++ ) {
-        if ( $scope.currentProfile.followers[i].id == $scope.user.id ) {
-          $scope.isFollowed = '1';
-        }
-      }
 
       $scope.setRating = function(score) {
         var rate = {
@@ -36,8 +36,8 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
         Rating.create(rate).$promise
           .then(function() {
             sum = sum + score;
-            count = count + 1;
-            $scope.average_rating = Math.round(sum/count * 100) / 100;
+            $scope.count = $scope.count + 1;
+            $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
           });
       }
 
@@ -49,9 +49,7 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
         };
         Rating.update(rate, $scope.currentProfile.id).$promise
           .then(function() {
-            sum = sum + score;
-            count = count + 1;
-            $scope.average_rating = Math.round(sum/count * 100) / 100;
+
           });
       }
 
