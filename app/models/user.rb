@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   acts_as_messageable
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :ratings,  dependent: :destroy
 
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
@@ -14,8 +13,10 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :raters, class_name: "Rating", dependent: :destroy
+  has_many :ratees, class_name: "Rating", dependent: :destroy
+
   after_create :update_avatar
-  after_create :update_score  
 
   before_save do
     self.uid = SecureRandom.uuid
@@ -41,11 +42,6 @@ class User < ActiveRecord::Base
 
   def update_avatar
     self.image = "assets/placeholder.png"
-    save
-  end
-
-  def update_score
-    self.ratings.create(score: '0')
     save
   end
 

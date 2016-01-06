@@ -92,13 +92,13 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
 // Redirects
 
-  $scope.redirectToProfile = function(user) {
+  $scope.redirectToProfile = function(userId) {
 //  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var path = '/profile/'+user.id;
+    var path = '/profile/' + userId;
     $location.path(path);
   }
 
-  $scope.redirectToSetting = function(user) {
+  $scope.redirectToSetting = function(ev) {
     var path = '/settings/account';
     $location.path(path);
   }
