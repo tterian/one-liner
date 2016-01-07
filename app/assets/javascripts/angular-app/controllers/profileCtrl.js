@@ -4,6 +4,10 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
   $scope.relationship = Relationship.all;
   $scope.isFollowed = '0';
   $scope.isRated = '0';
+  $scope.rating = {
+    score: 0,
+    comment: ''
+  };
 
   Account.get($routeParams.id).$promise
     .then(function(response) {
