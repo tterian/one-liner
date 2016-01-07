@@ -2,7 +2,8 @@
 
   <div class="md-toolbar-tools">
 
-    <span flex="15"></span>
+
+    <span flex="10"></span>
 
     <md-button  md-no-ink class="md-primary" aria-label="Home"
                 ng-show="user.signedIn"
@@ -22,8 +23,8 @@
       Messages
     </md-button>
 
-    <span ng-show="user.signedIn" flex="20"></span>
-    <span ng-hide="user.signedIn" flex="15"></span>
+    <span ng-show="user.signedIn" flex="30"></span>
+    <span ng-hide="user.signedIn" flex="20"></span>
 
     <div ng-hide="user.signedIn" flex="40" class="md-searchbox">
       <div class="md-whiteframe-z1 md-searchbox-wrap">
@@ -92,10 +93,10 @@
 
 <div class="md-main-content" layout="row">
 
-  <span flex="15"></span>
+  <span flex="10"></span>
 
-  <span ng-hide="user.signedIn" flex="15"></span>
-  <div  ng-show="user.signedIn" class="md-user" flex="15" flex-xs="100" layout="column">
+  <span ng-hide="user.signedIn" flex="20"></span>
+  <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
     <md-card>
       <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
       
@@ -145,7 +146,7 @@
 
   </md-card>
 
-  <div  ng-show="user.signedIn" flex="15" flex-xs="100" layout="column">
+  <div  ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
     <md-card ng-show="user.signedIn">
       <md-card-title>
         <md-card-title-text>
