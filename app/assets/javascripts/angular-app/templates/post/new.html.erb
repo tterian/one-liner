@@ -3,13 +3,17 @@
   <md-divider></md-divider>
 
   <md-content layout-padding>
-      <form name="userForm">
-        
+      <form name="userForm">        
         <md-input-container class="md-block">
           <label>Content</label>
           <input type="text" aria-label="content" ng-model="post.content" required>
         </md-input-container>
-        
+
+        <md-input-container class="md-block">
+          <label>Location</label>
+          <md-icon md-svg-src="assets/svg/md-pin.svg" class="name"></md-icon>
+          <input type="text" aria-label="content" ng-model="post.location">
+        </md-input-container>
       </form>
   </md-content>
   

@@ -20,14 +20,15 @@ function PostsController($scope, $mdDialog, Post) {
         score: $scope.user.average_rating
       },
       user_id:      $scope.user.id,
-      created_at:   new Date(),
-      comments:     []
+      location:     post.location,
+      created_at:   new Date()
     };
 
     Post.create(newPost).$promise
       .then(function() {
         $scope.posts.push(newPost);
         $mdDialog.hide();
+        $scope.post = '';
       });
   };
 
