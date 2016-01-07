@@ -15,6 +15,10 @@ function PostsController($scope, $mdDialog, Post) {
         image: $scope.user.image,
         name:  $scope.user.name
       },
+      rating: {
+        count: $scope.user.reviews,
+        score: $scope.user.average_rating
+      },
       user_id:      $scope.user.id,
       created_at:   new Date(),
       comments:     []

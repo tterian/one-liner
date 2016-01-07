@@ -21,7 +21,7 @@ module DeviseTokenAuth
         data: @resource.as_json(except: [
           :tokens, :updated_at
       ], methods: [
-          :post_count, :follower_count, :following_count
+          :post_count, :follower_count, :following_count, :average_rating, :reviews
       ]) }
     end
 

@@ -9,7 +9,9 @@ function Rating($resource) {
     });
 
   var Rating = {
-    all: ratings.query(),
+    all: function(rateeId) {
+      return ratings.query({'ratee_id': rateeId})
+    },
 
     get: function(ratingId) {
       return ratings.get({'ratingId': ratingId});

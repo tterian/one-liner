@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
   # GET /api/ratings
   # Get all the ratings
   def index
-    ratings = current_user.raters
+    ratings = Rating.where(ratee_id: params[:ratee_id])
     render json: ratings
   end
 
@@ -17,7 +17,7 @@ class RatingsController < ApplicationController
   # rating /api/ratings
   # Add a new rating
   def create
-    rating = Rating.create(score: params[:score], rater_id: current_user.id, ratee_id: params[:ratee_id])
+    rating = Rating.create(score: params[:score], comment: params[:comment], rater_id: current_user.id, ratee_id: params[:ratee_id])
 
     if rating.save
       render json: rating
@@ -31,7 +31,7 @@ class RatingsController < ApplicationController
   def update
     rating = Rating.where(rater_id: current_user.id, ratee_id: params[:id]).first
 
-    if rating.update(score: params[:score], rater_id: current_user.id, ratee_id: params[:ratee_id])
+    if rating.update(score: params[:score], comment: params[:comment], rater_id: current_user.id, ratee_id: params[:ratee_id])
       render json: rating
     else
       render json: { error: rating.errors }, status: :unprocessable_entity
@@ -42,7 +42,7 @@ class RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:params).permit(:id, :score, :rater_id, :ratee_id)
+    params.require(:params).permit(:id, :score, :comment, :rater_id, :ratee_id)
   end
 
 end

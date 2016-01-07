@@ -9,6 +9,7 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
     .then(function(response) {
       $scope.currentProfile = response;
       $scope.posts = response.posts;
+      $scope.ratings = Rating.all($scope.currentProfile.id);
       var sum = response.rating.sum;
       $scope.count = response.rating.count;
       if ( $scope.count == 0 ) {
@@ -28,13 +29,24 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
           if ( response.score != null ) {
             $scope.oldScore = response.score;
             $scope.isRated = '1';
-            $scope.score = response.score;
+            $scope.rating = {
+              score:   response.score,
+              comment: response.comment
+            }
           }
+          $scope.getStarNumber = function(num) {
+            return new Array(Math.round(num * 100) / 100);   
+          }
+          $scope.setStar = function(id) {
+            $scope.rating.score = id + 1
+          }
+
         });
 
-      $scope.setRating = function(score) {
+      $scope.setRating = function(rating) {
         var rate = {
-          score:    score,
+          score:    rating.score,
+          comment:  rating.comment,
           rater_id: $scope.user.id,
           ratee_id: $scope.currentProfile.id
         };
@@ -44,20 +56,24 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
             $scope.count = $scope.count + 1;
             $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
             $scope.oldScore = score;
+            $scope.rating = rate;
+            $scope.ratings.push(rate);
           });
       }
 
-      $scope.updateRating = function(score) {
+      $scope.updateRating = function(rating) {
         var rate = {
-          score:    score,
+          score:    rating.score,
+          comment:  rating.comment,
           rater_id: $scope.user.id,
           ratee_id: $scope.currentProfile.id
         };
         Rating.update(rate, $scope.currentProfile.id).$promise
           .then(function() {
-            sum = sum - $scope.oldScore + score;
+            sum = sum - $scope.oldScore + rating.score;
             $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
-            $scope.oldScore = score;
+            $scope.oldScore = rating.score;
+            $scope.rating = rate;
           });
       }
 
@@ -66,6 +82,8 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
   $scope.deletePost = function(post) {
 
   }
+
+
 
   $scope.showSignIn = function(ev) {
     $mdDialog.show({

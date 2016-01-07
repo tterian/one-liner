@@ -41,7 +41,9 @@ $light-blue   : #55aeed;
   box-sizing: content-box;
 }
 
-
+.md-profile-stars {
+  margin-top: 25px;
+}
 
 .md-post-header {
   width: 100%;
@@ -88,6 +90,10 @@ $light-blue   : #55aeed;
   top: 6px;
 }
 
+.md-star-icon {
+  cursor: pointer;
+  outline: none;
+}
 
 .time-ago {
   font-weight: 300;

@@ -35,8 +35,15 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
     var newPost = {
       id:           lastPost.id + 1,
       content:      post.content,
+      poster: {
+        image: $scope.user.image,
+        name:  $scope.user.name
+      },
+      rating: {
+        count: $scope.user.reviews,
+        score: $scope.user.average_rating
+      },
       user_id:      $scope.user.id,
-      user:         $scope.user,
       created_at:   new Date(),
       comments:     []
     };
