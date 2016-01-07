@@ -21,8 +21,8 @@
 //= require angular-moment
 //= require angular-cookie
 //= require ng-token-auth
-//= require filepicker-angular
-
+//= require angular-filepicker
+//= require filepicker-js
 
 //= require_tree ./angular-app/templates
 //= require_tree ./angular-app/controllers

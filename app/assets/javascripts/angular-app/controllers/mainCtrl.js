@@ -23,8 +23,8 @@ function MainController($scope, $location, $mdDialog, User, Post) {
         score: $scope.user.average_rating
       },
       user_id:      $scope.user.id,
-      created_at:   new Date(),
-      comments:     []
+      location:     post.location,
+      created_at:   new Date()
     };
 
     Post.create(newPost).$promise

@@ -131,16 +131,27 @@
 
   <div class="md-posts" flex="40" flex-xs="100" layout="column">
 
-    <md-card ng-show="user.signedIn">
+    <md-card ng-show="user.signedIn" layout="column">
       <div layout="row">          
         <img ng-src="{{user.image}}" class="md-poster-avatar" alt="{{user.id}}" />
 
-        <md-input-container flex="90" md-no-float class="md-block">
-          <input ng-model="post.content" type="text" placeholder="What's happening?"
-                 ng-keypress="($event.charCode==13)?addPost(post):return">
-        </md-input-container>
+        <div flex="80" class="column">
+          <md-input-container md-no-float class="md-block">
+            <input ng-model="post.content" type="text" placeholder="What's happening?">
+          </md-input-container>
+
+          <md-input-container md-no-float class="md-block">
+            <md-icon md-svg-src="assets/svg/md-pin.svg" class="name"></md-icon>
+            <input ng-model="post.location" type="text" placeholder="Enter a location">
+          </md-input-container>
+        </div>
 
       </div>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised" ng-click="addPost(post)">Post</md-button>
+      </md-card-actions>
+
     </md-card>
 
 
@@ -168,15 +179,24 @@
               </span>
             </h3>
             <p>{{post.content}}</p>
-          </div>          
+          </div>
         </div>
-        
+
+        <md-divider></md-divider>
+
+        <div ng-show="post.location" layout="column">
+          <span>
+            <md-icon class="md-star-icon" md-svg-src="assets/svg/md-pin.svg"></md-icon>
+            {{post.location}}            
+          </span>
+        </div>
+
       </div>
     </md-card>
 
   </div>
 
-  <div  ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+  <div ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
     <md-card ng-show="user.signedIn">
       <md-card-title>
         <md-card-title-text>

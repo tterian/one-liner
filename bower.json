@@ -10,7 +10,8 @@
 			"angular-material-icons": "latest",
 			"angular-moment": "latest",
 			"ng-token-auth": "latest",
-			"angular-cookie": "latest"
+			"angular-cookie": "latest",
+			"angular-filepicker": "1.1.3"
 		}
 	},
 	"vendor": {

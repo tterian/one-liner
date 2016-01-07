@@ -27,6 +27,7 @@ angular
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
+  .controller('LocationsController', LocationsController)
   .controller('SettingsController', SettingsController)
   .controller('MessagesController', MessagesController)
   .controller('NotificationsController', NotificationsController)
