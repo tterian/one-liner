@@ -56,10 +56,10 @@ function ProfilesController($scope, $routeParams, $location, $mdDialog, User, Re
         };
         Rating.create(rate).$promise
           .then(function() {
-            sum = sum + score;
+            sum = sum + rating.score;
             $scope.count = $scope.count + 1;
             $scope.average_rating = Math.round(sum/$scope.count * 100) / 100;
-            $scope.oldScore = score;
+            $scope.oldScore = rating.score;
             $scope.rating = rate;
             $scope.ratings.push(rate);
           });

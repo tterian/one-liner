@@ -25,34 +25,15 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
       });
   }
 
-  $scope.addPost = function(post) {
-    if ($scope.posts.length == 0) {
-      var lastPost = 0;
-    } else {
-      var lastPost = $scope.posts[$scope.posts.length - 1];
-    }
-
-    var newPost = {
-      id:           lastPost.id + 1,
-      content:      post.content,
-      poster: {
-        image: $scope.user.image,
-        name:  $scope.user.name
-      },
-      rating: {
-        count: $scope.user.reviews,
-        score: $scope.user.average_rating
-      },
-      user_id:      $scope.user.id,
-      created_at:   new Date(),
-      comments:     []
-    };
-
-    Post.create(newPost).$promise
-      .then(function() {
-        $scope.posts.push(newPost);
-        $scope.post = '';
-      });
+  $scope.showPost = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'PostsController',
+      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
+      targetEvent: ev
+    });
   };
 
   $scope.deletePost = function(post) {
