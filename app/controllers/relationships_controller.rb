@@ -15,8 +15,8 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.create(follower_id: current_user.id, followed_id: params[:followed_id])
     @relationship.create_activity key: 'relationship.follow', owner: current_user, recipient: User.find(params[:followed_id])
 
-    if relationship.save
-      render json: relationship
+    if @relationship.save
+      render json: @relationship
     else
       render json: { error: "Relationship creating error" }, status: :unprocessable_entity
     end
