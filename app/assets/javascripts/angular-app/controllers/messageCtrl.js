@@ -45,9 +45,24 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
       recipient_id: $scope.currentProfile.id,
       content:      message.content
     }
+    var newConversation = {
+      id:           $scope.conversations.length + 1,
+      created_at:   new Date(),
+      image:        $scope.user.image,
+      messages: {
+        body:    message.content,
+        image:   $scope.user.image,
+        subject: $scope.currentProfile.name
+      },
+      recipients: [
+        $scope.currentProfile,
+        $scope.user
+      ],
+      subject:    $scope.currentProfile.name
+    }
     Message.create(m).$promise
       .then(function() {
-        $scope.conversations.push(m);
+        $scope.conversations.push(newConversation);
         $mdDialog.hide();
       });
   }
