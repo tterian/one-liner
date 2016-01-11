@@ -9,17 +9,6 @@ class NotificationsController < ApplicationController
     render json: notifications, each_serializer: NotificationSerializer
   end
 
-  # PATCH /api/notifications/:id
-  # Updates a specific notification
-  # def update
-  #   @notification = Activity.find(params[:id])
-  #   if @notification.update(notification_params)
-  #     render json: @notification
-  #   else
-  #     render json: { error: @notification.errors }, status: :unprocessable_entity
-  #   end
-  # end
-
   # DELETE /api/notifications/:id
   # Deletes a specific notification
   def destroy
