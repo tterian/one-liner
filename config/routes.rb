@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/settings/account' => "pages#home"
   get '/messages' => "pages#home"
   get '/notifications' => "pages#home"
+  get '/suggestions' => "pages#home"
 
   scope '/api' do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
@@ -32,6 +33,9 @@ Rails.application.routes.draw do
     end
     resources :messages, only: [:create]
     resources :notifications,      only: [:index, :update]
+
+    get '/suggestions', to: 'suggestions#index'
+    get '/suggestions/:suggestionId', to: 'suggestions#show'
   end
 
 end

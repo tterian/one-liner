@@ -117,86 +117,64 @@
 
         <div class="md-user-info-item">
           <span class="md-subhead">FOLLOWING</span>
-          <h3 class="md-subhead">{{user.follower_count}}</h3> 
+          <h3 class="md-subhead">{{user.following_count}}</h3> 
         </div>
 
         <div class="md-user-info-item">
           <span class="md-subhead">FOLLOWERS</span>
-          <h3 class="md-subhead">{{user.following_count}}</h3>
+          <h3 class="md-subhead">{{user.follower_count}}</h3>
         </div>
       </div>
 
     </md-card>
   </div>  
 
-  <div class="md-posts" flex="40" flex-xs="100" layout="column">
+  <md-card class="md-notifications" flex="40" flex-xs="100" layout="column">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-title">Who to follow?</span>
+        <span class="md-subhead">Follow more people from the suggestions below</span>
+      </md-card-title-text>
+    </md-card-title>
 
-    <md-card ng-show="user.signedIn" layout="column">
-      <div layout="row">          
-        <img ng-src="{{user.image}}" class="md-poster-avatar" alt="{{user.id}}" />
+    <md-divider></md-divider>
 
-        <div flex="80" class="column">
-          <md-input-container md-no-float class="md-block">
-            <input ng-model="post.content" type="text" placeholder="What's happening?">
-          </md-input-container>
-
-          <md-input-container md-no-float class="md-block">
-            <md-icon md-svg-src="assets/svg/md-pin.svg" class="name"></md-icon>
-            <input ng-model="post.location" type="text" placeholder="Enter a location">
-          </md-input-container>
-        </div>
-
-      </div>
-
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="addPost(post)">Post</md-button>
-      </md-card-actions>
-
-    </md-card>
-
-
-    <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
-      <div layout="column">
-
-        <div class="" layout="row">
-          <img ng-src="{{post.poster.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
-
-          <div class="md-post-header" layout="column">
-            <h3>
-              <span ng-click="redirectToProfile(post.user_id)" class="md-post-owner">
-                {{post.poster.name}}
-              </span>
+    <md-card-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="suggestion in suggestions">
+          <img ng-src="{{suggestion.image}}" class="md-avatar" alt="{{suggestion.id}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{suggestion.name}}</h3>
+            <h4>
               <div class="md-stars">
-                <span ng-repeat="i in getStarNumber(post.rating.score) track by $index">
+                <span ng-repeat="i in calculateStarNumber(suggestion.rating) track by $index">
                   <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-full-red.svg"></md-icon>
                 </span>
-                <span ng-repeat="i in getStarNumber(5 - post.rating.score) track by $index">
+                <span ng-repeat="i in calculateStarNumberN(suggestion.rating) track by $index">
                   <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-black.svg"></md-icon>
                 </span>
               </div>
-              <span>
-                <em am-time-ago="post.created_at" class="time-ago"></em>
-              </span>
-            </h3>
-            <p>{{post.content}}</p>
+            </h4>
           </div>
-        </div>
 
-        <md-divider></md-divider>
+          <md-button ng-hide="isFollowedBy(user.id, suggestion.followers)" ng-click="followUser(suggestion.id)"
+                     class="md-raised" aria-label="Follow">
+            Follow
+          </md-button>
 
-        <div ng-show="post.location" layout="column">
-          <span>
-            <md-icon class="md-star-icon" md-svg-src="assets/svg/md-pin.svg"></md-icon>
-            {{post.location}}            
-          </span>
-        </div>
+          <md-button ng-show="isFollowedBy(user.id, suggestion.followers)" ng-click="unfollowUser(suggestion.id)"
+                     class="md-raised" aria-label="Unfollow">
+            Unfollow
+          </md-button>
 
-      </div>
-    </md-card>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
 
-  </div>
+  </md-card>
 
-  <div ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+  <div  ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
     <md-card ng-show="user.signedIn">
       <md-card-title>
         <md-card-title-text>
@@ -205,10 +183,6 @@
       </md-card-title>
 
       <md-divider></md-divider>
-
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="redirectToSuggestions($event)">View all</md-button>
-      </md-card-actions>
 
     </md-card>
   </div>
@@ -255,10 +229,6 @@
       </md-card-actions>
 
     </md-card>
-
-<!--     <md-button ng-hide="user.signedIn" ng-click="showSignIn($event)" class="md-raised" aria-label="Sign in">
-      Sign In
-    </md-button> -->
 
   </div>
 

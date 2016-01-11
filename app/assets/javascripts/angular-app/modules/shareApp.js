@@ -24,6 +24,7 @@ angular
   .factory('Conversation', Conversation)
   .factory('Message', Message)
   .factory('Notification', Notification)
+  .factory('Suggestion', Suggestion)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
@@ -31,6 +32,7 @@ angular
   .controller('SettingsController', SettingsController)
   .controller('MessagesController', MessagesController)
   .controller('NotificationsController', NotificationsController)
+  .controller('SuggestionsController', SuggestionsController)  
   .controller('UsersController', UsersController);
 
 //Config routes
@@ -55,6 +57,10 @@ function routeProvider($routeProvider, $locationProvider) {
     .when('/notifications', {
       controller: 'NotificationsController',
       templateUrl: 'assets/angular-app/templates/notification/main.html.erb'      
+    })
+    .when('/suggestions', {
+      controller: 'SuggestionsController',
+      templateUrl: 'assets/angular-app/templates/suggestion/main.html.erb'      
     })
     .otherwise({
       redirectTo: '/'

@@ -1,47 +1,41 @@
-function MainController($scope, $location, $mdDialog, User, Post) {
+function SuggestionsController($scope, $location, $mdDialog, User, Relationship, Suggestion, Post) {
 
   $scope.posts = Post.all;
+  $scope.suggestions = Suggestion.all;
 
-  $scope.addPost = function(post) {
-    var user = $scope.user;
-
-    if ($scope.posts.length == 0) {
-      var lastPost = 0;
-    } else {
-      var lastPost = $scope.posts[$scope.posts.length - 1];
-    }
-
-    var newPost = {
-      id:           lastPost.id + 1,
-      content:      post.content,
-      poster: {
-        image: $scope.user.image,
-        name:  $scope.user.name
-      },
-      rating: {
-        count: $scope.user.reviews,
-        score: $scope.user.average_rating
-      },
-      user_id:      $scope.user.id,
-      location:     post.location,
-      created_at:   new Date()
-    };
-
-    Post.create(newPost).$promise
-      .then(function() {
-        $scope.posts.push(newPost);
-        $scope.post = '';
-      });
+  $scope.showPost = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'PostsController',
+      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
+      targetEvent: ev
+    });
   };
 
-  $scope.deletePost = function(post) {
-
+  $scope.isFollowedBy = function(userId, followers) {
+    for ( var i = 0; i < followers.length; i++ ) {
+      if ( followers[i].id == userId ) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  $scope.getStarNumber = function(num) {
-    return new Array(Math.round(num * 100) / 100);   
+  $scope.followUser = function(followedId) {
+    Relationship.follow(followedId).$promise
+      .then(function() {
+        $scope.user.following_count = $scope.user.following_count + 1;
+      });
   }
 
+  $scope.unfollowUser = function(followedId) {
+    Relationship.unfollow(followedId).$promise
+      .then(function() {
+        $scope.user.following_count = $scope.user.following_count - 1;
+      });
+  }
 
   $scope.signIn = function(user) {
     User.signIn(user)
@@ -75,16 +69,6 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     });
   };
 
-  $scope.showPost = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'PostsController',
-      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
-      targetEvent: ev
-    });
-  };
 
   $scope.signOut = function() {
     User.signOut().then(function() {
@@ -98,16 +82,32 @@ function MainController($scope, $location, $mdDialog, User, Post) {
     $mdDialog.hide(ev);
   }
 
+  $scope.calculateStarNumber = function(rating) {
+    if (rating.count == 0) {
+      return new Array(0)
+    } else {      
+      return new Array(Math.round(rating.sum/rating.count * 100) / 100);
+    }
+  }
+
+  $scope.calculateStarNumberN = function(rating) {
+    if (rating.count == 0) {
+      return new Array(5)
+    } else {      
+      return new Array(5 - Math.round(rating.sum/rating.count * 100) / 100);
+    }
+  }
+
 
 // Redirects
 
-  $scope.redirectToProfile = function(userId) {
+  $scope.redirectToProfile = function(user) {
 //  var userId = user.name.replace(/ /g,"_").toLowerCase();
-    var path = '/profile/' + userId;
+    var path = '/profile/'+user.id;
     $location.path(path);
   }
 
-  $scope.redirectToSetting = function(ev) {
+  $scope.redirectToSetting = function(user) {
     var path = '/settings/account';
     $location.path(path);
   }
@@ -119,11 +119,6 @@ function MainController($scope, $location, $mdDialog, User, Post) {
 
   $scope.redirectToNotifications = function(ev) {
     var path = '/notifications';
-    $location.path(path);
-  }
-
-  $scope.redirectToSuggestions = function(ev) {
-    var path = '/suggestions';
     $location.path(path);
   }
 
