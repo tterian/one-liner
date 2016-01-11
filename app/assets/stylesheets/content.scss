@@ -3,9 +3,11 @@ Content
 -------------------------------- */
 
 $light-blue   : #55aeed;
+$dark-grey    : #eeeeee;
 
 .md-main-content {
-  padding: 20px 40px 20px 40px;
+  padding: 80px 40px 20px 40px;
+  background-color: $dark-grey !important;
 }
 
 .md-avatar {
@@ -26,6 +28,10 @@ $light-blue   : #55aeed;
   height: 64px;
   border-radius: 50%;
   box-sizing: content-box;
+}
+
+md-toolbar {
+  position: fixed !important;
 }
 
 .md-toolbar-user {
