@@ -1,0 +1,50 @@
+<div ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+  <md-card ng-show="user.signedIn">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-title">Who to follow?</span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-divider></md-divider>
+
+    <md-card-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="suggestion in suggestions">
+          <img ng-src="{{suggestion.image}}" class="md-avatar" alt="{{suggestion.id}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{suggestion.name}}</h3>
+            <h4>
+              <div class="md-stars">
+                <span ng-repeat="i in calculateStarNumber(suggestion.rating) track by $index">
+                  <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-full-red.svg"></md-icon>
+                </span>
+                <span ng-repeat="i in calculateStarNumberN(suggestion.rating) track by $index">
+                  <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-black.svg"></md-icon>
+                </span>
+              </div>
+            </h4>
+          </div>
+
+          <md-button ng-hide="isFollowedBy(user.id, suggestion.followers)" ng-click="followUser(suggestion.id)"
+                     class="md-raised" aria-label="Follow">
+            Follow
+          </md-button>
+
+          <md-button ng-show="isFollowedBy(user.id, suggestion.followers)" ng-click="unfollowUser(suggestion.id)"
+                     class="md-raised" aria-label="Unfollow">
+            Unfollow
+          </md-button>
+
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button ng-click="">Refresh</md-button>
+      <md-button ng-click="redirectToSuggestions($event)">View all</md-button>
+    </md-card-actions>
+
+  </md-card>
+</div>

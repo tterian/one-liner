@@ -1,0 +1,89 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+
+    <span flex="10"></span>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Home"
+                ng-show="user.signedIn"
+                ng-click="redirectToHome($event)">
+      Home
+    </md-button>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Notifications"
+                ng-show="user.signedIn"
+                ng-click="redirectToNotifications($event)">
+      Notifications
+    </md-button>
+
+    <md-button  md-no-ink class="md-primary" aria-label="Messages"
+                ng-show="user.signedIn"
+                ng-click="redirectToMessages($event)">
+      Messages
+    </md-button>
+
+    <span ng-show="user.signedIn" flex="30"></span>
+    <span ng-hide="user.signedIn" flex="20"></span>
+
+    <div ng-hide="user.signedIn" flex="40" class="md-searchbox">
+      <div class="md-whiteframe-z1 md-searchbox-wrap">
+        <input type="text" placeholder="Search a post..." ng-model="searchPost">
+      </div>
+      <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
+    </div>
+
+    <span ng-hide="user.signedIn" flex></span>
+
+    <div ng-show="user.signedIn" flex="20" class="md-searchbox">
+      <div class="md-whiteframe-z1 md-searchbox-wrap">
+        <input type="text" placeholder="Search a post..." ng-model="searchPost">
+      </div>
+      <md-icon class="md-search-icon" md-svg-src="assets/svg/md-search.svg"></md-icon>        
+    </div>
+
+    <md-button ng-show="user.signedIn" ng-click="showPost($event)" class="md-raised" aria-label="Post">
+      Post
+    </md-button>
+
+    <md-button ng-hide="user.signedIn" ng-click="showSignUp($event)" class="md-raised" aria-label="Sign up">
+      Sign Up
+    </md-button>
+
+    <div>
+    <md-menu ng-show="user.signedIn" md-position-mode="target-right target">
+      <div class="md-toolbar-tools md-toolbar-user" layout="row" ng-click="$mdOpenMenu($event)">
+        <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
+      </div>
+
+      <md-menu-content width="4" >
+        <md-menu-item>
+          <md-button ng-click="redirectToProfile(user)">
+              <div layout="row">
+                <p flex>{{user.name}}</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-divider></md-divider>
+
+        <md-menu-item>
+          <md-button ng-click="redirectToSetting($event)">
+              <div layout="row">
+                <p flex>Settings</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="signOut($event)">
+              <div layout="row">
+                <p flex>Sign Out</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+    </md-menu>
+    </div>
+
+  </div>
+</md-toolbar>

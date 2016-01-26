@@ -25,6 +25,7 @@ angular
   .factory('Message', Message)
   .factory('Notification', Notification)
   .factory('Suggestion', Suggestion)
+  .controller('ToolbarController', ToolbarController)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('PostsController', PostsController)
@@ -33,7 +34,10 @@ angular
   .controller('MessagesController', MessagesController)
   .controller('NotificationsController', NotificationsController)
   .controller('SuggestionsController', SuggestionsController)  
-  .controller('UsersController', UsersController);
+  .controller('UsersController', UsersController)
+  .directive('followSuggestions', followSuggestions)
+  .directive('signInBox', signInBox)
+  .directive('shareToolbar', shareToolbar);
 
 //Config routes
 function routeProvider($routeProvider, $locationProvider) {
@@ -44,11 +48,11 @@ function routeProvider($routeProvider, $locationProvider) {
     })
     .when('/profile/:id', {
       controller: 'ProfilesController',
-      templateUrl: 'assets/angular-app/templates/user/profile.html.erb'      
+      templateUrl: 'assets/angular-app/templates/profile/main.html.erb'      
     })
     .when('/settings/account', {
       controller: 'SettingsController',
-      templateUrl: 'assets/angular-app/templates/user/setting.html.erb'      
+      templateUrl: 'assets/angular-app/templates/setting/main.html.erb'      
     })
     .when('/messages', {
       controller: 'MessagesController',
