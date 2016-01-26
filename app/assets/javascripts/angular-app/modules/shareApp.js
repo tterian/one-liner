@@ -37,6 +37,8 @@ angular
   .controller('UsersController', UsersController)
   .directive('followSuggestions', followSuggestions)
   .directive('signInBox', signInBox)
+  .directive('userProfile', userProfile)
+  .directive('userRating', userRating)
   .directive('shareToolbar', shareToolbar);
 
 //Config routes

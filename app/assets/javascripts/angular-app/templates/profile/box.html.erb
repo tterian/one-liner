@@ -1,0 +1,35 @@
+<md-card>
+  <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
+
+  <md-card-title>
+    <img ng-src="{{currentProfile.image}}" class="md-avatar" alt="{{currentProfile.name}}" />
+    <md-card-title-text>
+      <span class="md-title md-user-title">{{currentProfile.name}}</span>
+      <span class="md-subhead md-user-title">{{currentProfile.bio}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  
+  <md-divider></md-divider>
+
+  <div class="md-subhead md-user-joined">
+    <p><em>
+      <span>joined {{currentProfile.created_at | date:'d MMMM yyyy' : 'UTC'}}</span>            
+    </em></p>
+  </div>
+
+  <md-button ng-show="currentProfile.id != user.id && isFollowed == '0'" class="md-raised" aria-label="Follow"
+             ng-click="followUser(currentProfile.id)">
+    Follow
+  </md-button>
+
+  <md-button ng-show="currentProfile.id != user.id && isFollowed == '1'" class="md-raised" aria-label="Follow"
+             ng-click="unfollowUser(currentProfile.id)">
+    Unfollow
+  </md-button>
+
+  <md-button ng-hide="currentProfile.id == user.id" class="md-raised" aria-label="Diirect Message"
+             ng-click="showSendMessage($event)">
+    Direct Message
+  </md-button>
+
+</md-card>
