@@ -35,6 +35,7 @@ angular
   .controller('NotificationsController', NotificationsController)
   .controller('SuggestionsController', SuggestionsController)  
   .controller('UsersController', UsersController)
+  .directive('postBox', postBox)  
   .directive('followSuggestions', followSuggestions)
   .directive('signInBox', signInBox)
   .directive('userProfile', userProfile)

@@ -1,9 +1,82 @@
-<md-toolbar>
+<md-toolbar class="md-tall">
+
   <div class="md-toolbar-tools">
+    <span flex="20"></span>
+    <div class="md-toolbar-tools md-toolbar-user" layout="row">
+      <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
+      <span class="md-subhead">
+        {{user.name}}
+      </span>
+    </div>
 
-    <span flex="10"></span>
+    <md-icon md-svg-src="assets/svg/md-abc.svg"></md-icon>
 
-    <md-button  md-no-ink class="md-primary" aria-label="Home"
+    <span flex="80"></span>
+
+    <div layout="row">
+      <md-icon md-svg-src="assets/svg/md-search.svg"></md-icon>
+      <md-icon md-svg-src="assets/svg/md-setting.svg"></md-icon>
+    </div>
+  </div>
+
+  <span flex></span>
+
+
+  <div class="md-toolbar-tools md-toolbar-tools-bottom">
+    <span flex="20"></span>
+    <div class="md-toolbar-tools" layout="row">
+      <div class="md-user-info-item">
+        <span class="md-subhead">POSTS</span>
+        <h3 class="md-subhead">{{posts.length}}</h3>
+      </div>
+
+      <div class="md-user-info-item">
+        <span class="md-subhead">FOLLOWING</span>
+        <h3 class="md-subhead">{{currentProfile.following.length}}</h3>
+      </div>
+
+      <div class="md-user-info-item">
+        <span class="md-subhead">FOLLOWERS</span>
+        <h3 class="md-subhead">{{currentProfile.followers.length}}</h3>
+      </div>
+    </div>
+
+    <div class="md-toolbar-tools md-toolbar-tools-bottom" layout="row">
+      <md-button  md-no-ink class="md-primary" aria-label="Home"
+                  ng-show="user.signedIn"
+                  ng-click="redirectToHome($event)">
+        Home
+      </md-button>
+
+      <md-button  md-no-ink class="md-primary" aria-label="Notifications"
+                  ng-show="user.signedIn"
+                  ng-click="redirectToNotifications($event)">
+        Notifications
+      </md-button>
+
+      <md-button  md-no-ink class="md-primary" aria-label="Messages"
+                  ng-show="user.signedIn"
+                  ng-click="redirectToMessages($event)">
+        Messages
+      </md-button>
+    </div>
+
+
+
+  </div>
+
+<!--   <div class="md-toolbar-tools md-toolbar-tools-bottom">
+    <span flex="20"></span>
+
+    <div class="md-toolbar-tools">
+      <span class="md-subhead">POSTS</span>
+      <h3 class="md-subhead">{{posts.length}}</h3>
+    </div>
+
+
+  </div> -->
+
+<!--     <md-button  md-no-ink class="md-primary" aria-label="Home"
                 ng-show="user.signedIn"
                 ng-click="redirectToHome($event)">
       Home
@@ -85,5 +158,5 @@
     </md-menu>
     </div>
 
-  </div>
+  </div> -->
 </md-toolbar>

@@ -57,24 +57,4 @@ function MainController($scope, $location, $mdDialog, User, Relationship, Post) 
       });
   };
 
-  $scope.getStarNumber = function(num) {
-    return new Array(Math.round(num * 100) / 100);   
-  }
-
-  $scope.calculateStarNumber = function(rating) {
-    if (rating.count == 0) {
-      return new Array(0)
-    } else {      
-      return new Array(Math.round(rating.sum/rating.count * 100) / 100);
-    }
-  }
-
-  $scope.calculateStarNumberN = function(rating) {
-    if (rating.count == 0) {
-      return new Array(5)
-    } else {      
-      return new Array(5 - Math.round(rating.sum/rating.count * 100) / 100);
-    }
-  }
-
 };
