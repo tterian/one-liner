@@ -4,64 +4,22 @@
 
   <span flex="10"></span>
 
-  <span ng-hide="user.signedIn" flex="20"></span>
-
-  <div  ng-show="user.signedIn" class="md-user" flex="20" flex-xs="100" layout="column">
-    <md-card>
-      <img ng-src="assets/cover1.png" class="md-card-image" alt="Cover">
-      
-      <md-card-title>
-        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-        <md-card-title-text>
-          <span class="md-title md-user-title">{{user.name}}</span>
-          <span class="md-subhead md-user-title">{{user.bio}}</span>
-        </md-card-title-text>
-      </md-card-title>
-
-      <md-divider></md-divider>
-      
-      <div class="md-user-info" layout="row" layout-align="center">
-        <div class="md-user-info-item">
-          <span class="md-subhead">POSTS</span>
-          <h3 class="md-subhead">{{user.post_count}}</h3>
-        </div>
-
-        <div class="md-user-info-item">
-          <span class="md-subhead">FOLLOWING</span>
-          <h3 class="md-subhead">{{user.following_count}}</h3> 
-        </div>
-
-        <div class="md-user-info-item">
-          <span class="md-subhead">FOLLOWERS</span>
-          <h3 class="md-subhead">{{user.follower_count}}</h3>
-        </div>
-      </div>
-
-    </md-card>
-  </div>  
+  <trend-box></trend-box>
 
   <div class="md-posts" flex="40" flex-xs="100" layout="column">
 
     <md-card ng-show="user.signedIn" layout="column">
       <div layout="row">          
-        <img ng-src="{{user.image}}" class="md-poster-avatar" alt="{{user.id}}" />
+        <img ng-src="{{user.image}}" class="md-liner-avatar" alt="{{user.id}}" />
 
-        <div flex="80" class="column">
+        <div flex="85" class="md-add-line column">
           <md-input-container md-no-float class="md-block">
-            <input ng-model="post.content" type="text" placeholder="What's happening?">
-          </md-input-container>
-
-          <md-input-container md-no-float class="md-block">
-            <md-icon md-svg-src="assets/svg/md-pin.svg" class="name"></md-icon>
-            <input ng-model="post.location" type="text" placeholder="Enter a location">
+            <input ng-model="post.content" type="text" placeholder="Share a line!"
+                   ng-keypress="($event.charCode==13)?addPost(post):return">
           </md-input-container>
         </div>
 
       </div>
-
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="addPost(post)">Post</md-button>
-      </md-card-actions>
 
     </md-card>
 
@@ -69,7 +27,7 @@
 
   </div>
 
-  <follow-suggestions></follow-suggestions>
+  <suggestion-box></suggestion-box>
   <sign-in-box></sign-in-box>
 
 </div>

@@ -1,0 +1,24 @@
+<div ng-show="user.signedIn" flex="20" flex-xs="100" layout="column">
+  <md-card ng-show="user.signedIn">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-title">
+          <md-icon class="md-toolbar-icon" md-svg-src="assets/svg/md-trend.svg"></md-icon>
+          Trending
+        </span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-divider></md-divider>
+
+    <md-card-content>
+
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button ng-click="">Refresh</md-button>
+      <md-button ng-click="redirectToSuggestions($event)">View all</md-button>
+    </md-card-actions>
+
+  </md-card>
+</div>

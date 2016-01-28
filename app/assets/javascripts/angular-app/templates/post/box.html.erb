@@ -1,7 +1,7 @@
 <md-card ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index">
-  <div layout="column">
 
-    <div class="" layout="row">
+  <md-card-content class="md-post" ng-click="activatePost($index)">
+    <div layout="row">
       <img ng-src="{{post.poster.image}}" class="md-poster-avatar" alt="{{post.user.id}}" />
 
       <div class="md-post-header" layout="column">
@@ -9,21 +9,26 @@
           <span ng-click="redirectToProfile(post.user_id)" class="md-post-owner">
             {{post.poster.name}}
           </span>
-          <div class="md-stars">
-            <span ng-repeat="i in getStarNumber(post.rating.score) track by $index">
-              <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-full-red.svg"></md-icon>
-            </span>
-            <span ng-repeat="i in getStarNumber(5 - post.rating.score) track by $index">
-              <md-icon class="md-star-icon" md-svg-src="assets/svg/md-star-black.svg"></md-icon>
-            </span>
-          </div>
           <span>
             <em am-time-ago="post.created_at" class="time-ago"></em>
           </span>
         </h3>
-        <p>{{post.content}}</p>
+        <p>
+          {{post.content}}
+        </p>
       </div>
     </div>
+  </md-card-content>
 
-  </div>
+  <md-divider></md-divider>
+
+  <md-card-actions class="md-post-actions" layout="row" layout-align="start center">
+    <md-button class="md-icon-button" aria-label="Favorite">
+      <md-icon md-svg-src="assets/svg/md-reply.svg"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Settings">
+      <md-icon md-svg-src="assets/svg/md-heart.svg"></md-icon>
+    </md-button>
+  </md-card-actions>
+
 </md-card>

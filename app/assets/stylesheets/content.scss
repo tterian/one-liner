@@ -4,6 +4,7 @@ Content
 
 $light-blue   : #55aeed;
 $dark-grey    : #eeeeee;
+$light-grey   : #aab8c2;
 
 .md-main-content {
   padding: 138px 40px 20px 40px;
@@ -20,15 +21,28 @@ $dark-grey    : #eeeeee;
 }
 
 .md-poster-avatar {
-  margin-top: 15px;
-  margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
-  width: 64px;
   height: 64px;
   border-radius: 50%;
   box-sizing: content-box;
 }
+
+.md-add-line {
+  height: 78px;
+}
+
+.md-liner-avatar {
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
 
 md-toolbar {
   position: fixed !important;
@@ -47,16 +61,28 @@ md-toolbar {
   box-sizing: content-box;
 }
 
-.md-profile-stars {
-  margin-top: 25px;
+.md-post {
+  padding-bottom: 0 !important;
 }
+
+.md-post:hover {
+  background-color: $dark-grey;
+}
+
+
+.md-post-actions {
+  margin: 0 !important;
+}
+
 
 .md-post-header {
   width: 100%;
-  line-height: 0.1em !important;
   h3 {
-    line-height: 1.25em !important;
+    margin: 0 !important;
     font-size: 16px;
+  }
+  p {
+    margin: 0 !important;
   }
 }
 

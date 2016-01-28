@@ -1,4 +1,4 @@
-function followSuggestions() {
+function suggestionBox() {
   var directive = {
     restrict: 'AE',
     replace: 'true',
