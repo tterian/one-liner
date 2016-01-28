@@ -24,6 +24,7 @@ $light-grey   : #aab8c2;
   margin-right: 15px;
   margin-bottom: 15px;
   height: 64px;
+  width: 64px;
   border-radius: 50%;
   box-sizing: content-box;
 }
@@ -61,8 +62,14 @@ md-toolbar {
   box-sizing: content-box;
 }
 
-.md-post {
+.md-post-card {
   padding-bottom: 0 !important;
+}
+
+.md-post {
+  outline: none;
+  -webkit-transition: background 400ms ease;
+  transition:         background 400ms ease; 
 }
 
 .md-post:hover {
@@ -78,7 +85,7 @@ md-toolbar {
 .md-post-header {
   width: 100%;
   h3 {
-    margin: 0 !important;
+    margin: 0 0 6px 0 !important;
     font-size: 16px;
   }
   p {
@@ -132,3 +139,7 @@ md-toolbar {
   float: right !important;
 }
 
+.md-whiteframe-9dp {
+  -webkit-transition: box-shadow 400ms ease;
+  transition:         box-shadow 400ms ease;
+}

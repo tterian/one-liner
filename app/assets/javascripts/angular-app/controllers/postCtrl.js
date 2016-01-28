@@ -1,5 +1,11 @@
 function PostsController($scope, $mdDialog, Post) {
 
+  $scope.selectedIndex = -1;
+
+  $scope.lineClicked = function (id) {
+    $scope.selectedIndex = id;
+  };
+
   $scope.addPost = function(post) {
 
     if ($scope.posts.length == 0) {
