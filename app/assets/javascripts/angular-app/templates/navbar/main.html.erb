@@ -3,7 +3,8 @@
   <div layout="row">
     <span flex="10"></span>
 
-    <div class="md-toolbar-user" flex="20" layout="column">
+    <span ng-hide="user.signedIn" flex="20"></span>
+    <div ng-show="user.signedIn" class="md-toolbar-user" flex="20" layout="column">
       <div flex class="md-toolbar-user-avatar">
         <img ng-src="{{user.image}}" class="md-toolbar-avatar" alt="{{user.id}}" />
         <span class="md-subhead">
@@ -31,7 +32,7 @@
 
 
     <div class="md-toolbar-user" flex="40" layout="column">
-      <div flex class="">
+      <div flex class="center">
         <h3>One-liner</h3>
       </div>
 
@@ -60,7 +61,7 @@
     </div>
 
 
-    <div class="md-toolbar-user" flex="30" layout="column">
+    <div ng-show="user.signedIn" class="md-toolbar-user" flex="30" layout="column">
       <div flex>
         <md-icon class="md-toolbar-icon md-right" md-svg-src="assets/svg/md-setting.svg"></md-icon>
         <md-icon class="md-toolbar-icon md-right" md-svg-src="assets/svg/md-search.svg"></md-icon>

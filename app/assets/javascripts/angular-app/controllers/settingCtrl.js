@@ -11,28 +11,6 @@ function SettingsController($scope, $routeParams, $location, $mdDialog, User) {
   }
 
 
-  $scope.showSignIn = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/signin.html.erb',
-      targetEvent: ev
-    });
-  };
-
-  $scope.showSignUp = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/signup.html.erb',
-      targetEvent: ev
-    });
-  };
-
   $scope.showPost = function(ev) {
     $mdDialog.show({
       scope: $scope,

@@ -9,7 +9,7 @@
   <div class="md-posts" flex="40" flex-xs="100" layout="column">
 
     <md-card ng-show="user.signedIn" layout="column">
-      <div layout="row">          
+      <div layout="row">
         <img ng-src="{{user.image}}" class="md-liner-avatar" alt="{{user.id}}" />
 
         <div flex="85" class="md-add-line column">
@@ -18,9 +18,7 @@
                    ng-keypress="($event.charCode==13)?addPost(post):return">
           </md-input-container>
         </div>
-
       </div>
-
     </md-card>
 
     <post-box></post-box>

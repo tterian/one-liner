@@ -67,27 +67,6 @@ function MessagesController($scope, $location, $mdDialog, User, Conversation, Me
       });
   }
 
-  $scope.signIn = function(user) {
-    User.signIn(user)
-      .then(function() {
-        $mdDialog.hide();
-      })
-      .catch(function(response) {
-        $scope.authResponse = response.errors;
-      });
-  };
-
-  $scope.showSignUp = function(ev) {
-    $mdDialog.show({
-      scope: $scope,
-      preserveScope: true,
-      escapeToClose: true,
-      controller: 'UsersController',
-      templateUrl: 'assets/angular-app/templates/user/signup.html.erb',
-      targetEvent: ev
-    });
-  };
-
   $scope.showEditProfile = function(ev) {
     $mdDialog.show({
       scope: $scope,
