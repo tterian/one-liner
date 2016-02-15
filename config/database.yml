@@ -23,14 +23,14 @@ default: &default
 
 development:
   <<: *default
-  database: sharemj_development
+  database: oneliner_development
 
 test:
   <<: *default
-  database: sharemj_test
+  database: oneliner_test
 
 production:
   <<: *default
-  database: sharemj_production
-  username: pintags
-  password: <%= ENV['SHAREMJ_DATABASE_PASSWORD'] %>
+  database: oneliner_production
+  username: tterian
+  password: <%= ENV['ONELINER_DATABASE_PASSWORD'] %>
