@@ -1,8 +1,8 @@
-function PostsController($scope, $mdDialog, Post) {
+function PostsController($scope, $document, $mdDialog, Post) {
 
   $scope.selectedIndex = -1;
 
-  $scope.lineClicked = function (id) {
+  $scope.lineClicked = function(id) {
     $scope.selectedIndex = id;
   };
 
@@ -38,8 +38,13 @@ function PostsController($scope, $mdDialog, Post) {
       });
   };
 
-  $scope.activatePost = function(id) {
-    console.log(id);
-  }
+  $document.on('click', function(e) {
+    elem = angular.element(e.target)
+    if(!elem.hasClass('md-post-header')) {
+      console.log('aaaa');
+      console.log($scope.selectedIndex);
+      $scope.selectedIndex = -100;
+    }
+  });
 
 };

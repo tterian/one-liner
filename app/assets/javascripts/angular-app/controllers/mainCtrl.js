@@ -1,4 +1,4 @@
-function MainController($scope, $location, $mdDialog, User, Relationship, Post) {
+function MainController($scope, $document, $location, $mdDialog, User, Relationship, Post) {
 
   $scope.posts = Post.all;
 
@@ -56,5 +56,6 @@ function MainController($scope, $location, $mdDialog, User, Relationship, Post) 
         $scope.post = '';
       });
   };
+
 
 };
