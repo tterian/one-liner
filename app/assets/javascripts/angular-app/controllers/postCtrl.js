@@ -7,7 +7,6 @@ function PostsController($scope, $document, $mdDialog, Post) {
   };
 
   $scope.addPost = function(post) {
-
     if ($scope.posts.length == 0) {
       var lastPost = 0;
     } else {
@@ -21,12 +20,7 @@ function PostsController($scope, $document, $mdDialog, Post) {
         image: $scope.user.image,
         name:  $scope.user.name
       },
-      rating: {
-        count: $scope.user.reviews,
-        score: $scope.user.average_rating
-      },
       user_id:      $scope.user.id,
-      location:     post.location,
       created_at:   new Date()
     };
 
@@ -38,13 +32,9 @@ function PostsController($scope, $document, $mdDialog, Post) {
       });
   };
 
-  $document.on('click', function(e) {
-    elem = angular.element(e.target)
-    if(!elem.hasClass('md-post-header')) {
-      console.log('aaaa');
-      console.log($scope.selectedIndex);
-      $scope.selectedIndex = -100;
-    }
-  });
+  $scope.addComment = function(comment) {
+
+  };
+
 
 };

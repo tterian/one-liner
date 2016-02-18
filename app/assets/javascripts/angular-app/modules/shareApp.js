@@ -25,7 +25,7 @@ angular
   .factory('Message', Message)
   .factory('Notification', Notification)
   .factory('Suggestion', Suggestion)
-  .controller('ToolbarController', ToolbarController)
+  .controller('NavbarController', NavbarController)
   .controller('MainController', MainController)
   .controller('ProfilesController', ProfilesController)
   .controller('TrendsController', TrendsController)
@@ -36,13 +36,13 @@ angular
   .controller('NotificationsController', NotificationsController)
   .controller('SuggestionsController', SuggestionsController)  
   .controller('UsersController', UsersController)
+  .directive('navbar', navbar)
   .directive('trendBox', trendBox)
   .directive('postBox', postBox)
   .directive('suggestionBox', suggestionBox)
   .directive('signInBox', signInBox)
   .directive('userProfile', userProfile)
-  .directive('userRating', userRating)
-  .directive('shareToolbar', shareToolbar);
+  .directive('userRating', userRating);
 
 //Config routes
 function routeProvider($routeProvider, $locationProvider) {

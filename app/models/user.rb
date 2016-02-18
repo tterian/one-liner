@@ -14,18 +14,6 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-
-  has_many :active_ratings,  class_name:  "Rating",
-                             foreign_key: "rater_id",
-                             dependent:   :destroy
-
-  has_many :passive_ratings, class_name:  "Rating",
-                             foreign_key: "ratee_id",
-                             dependent:   :destroy
-
-  has_many :raters, through: :active_ratings,  source: :rater
-  has_many :ratees, through: :passive_ratings, source: :ratee
-
   after_create :update_avatar
 
   before_save do
@@ -69,23 +57,5 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
-
-  def average_rating
-    if Rating.where(ratee_id: self.id).count == 0
-      return 0
-    else
-      sum = 0
-      ratings = Rating.where(ratee_id: self.id)
-      ratings.each do |rating|
-        sum = sum + rating.score.to_i
-      end
-      return sum/ratings.count
-    end
-  end
-
-  def reviews
-    Rating.where(ratee_id: self.id).count
-  end
-
 
 end

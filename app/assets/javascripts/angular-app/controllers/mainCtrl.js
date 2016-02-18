@@ -57,5 +57,17 @@ function MainController($scope, $document, $location, $mdDialog, User, Relations
       });
   };
 
+  // $document.on('click', function(e) {
+  //   elem = angular.element(e.target)
+  //   if(elem.hasClass('md-post-header')) {
+  //     $scope.selectedIndex = 0;
+  //   } else {
+  //     console.log('aaaa');
+  //     console.log($scope.selectedIndex);
+  //     $scope.selectedIndex = -100;
+  //   }
+
+  // });
+
 
 };
