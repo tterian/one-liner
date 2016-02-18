@@ -5,10 +5,14 @@ function NavbarController($scope, $location, $routeParams, $mdDialog, User, Acco
   } else {
     userIndex = $scope.user.id
   }
-  Account.get(userIndex).$promise
-    .then(function(response) {
-      $scope.currentProfile = response;
-  });
+
+  if ($scope.currentProfile == undefined) {
+    Account.get(userIndex).$promise
+      .then(function(response) {
+        $scope.currentProfile = response;
+    });
+  }
+
 
   $scope.showEditProfile = function(ev) {
     $mdDialog.show({
