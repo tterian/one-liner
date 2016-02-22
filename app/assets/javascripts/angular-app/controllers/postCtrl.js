@@ -1,9 +1,10 @@
-function PostsController($scope, $document, $mdDialog, Post) {
+function PostsController($scope, $document, $mdDialog, Post, Comment) {
 
   $scope.selectedIndex = -1;
 
-  $scope.lineClicked = function(id) {
+  $scope.setPost = function(id, postId) {
     $scope.selectedIndex = id;
+    $scope.comments = Comment.all(postId);
   };
 
   $scope.addPost = function(post) {
@@ -33,6 +34,11 @@ function PostsController($scope, $document, $mdDialog, Post) {
   };
 
   $scope.addComment = function(comment) {
+    console.log(comment)
+    Comment.create(comment).$promise
+      .then(function() {
+        $scope.comments.push(comment);
+      });
 
   };
 

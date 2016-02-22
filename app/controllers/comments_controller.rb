@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_filter :load_post
 
   # GET /api/posts/:id/comments
   # Get all the comments
   def index
-    @post = Post.find(params[:post_id])
     @comments = @post.comments
     render json: @comments
   end
@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
   # GET /api/posts/:id/comments/:id
   # Get a specific comment
   def show
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     render json: @comment
   end
@@ -20,7 +19,6 @@ class CommentsController < ApplicationController
   # POST /api/posts/:id/comments
   # Add a new post
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.create(content: params[:content], user_id: current_user.id)
 
     if @comment.save
@@ -30,6 +28,10 @@ class CommentsController < ApplicationController
     end
   end
   
+  def load_post
+    @post = Post.find(params[:post_id])
+  end
+
   private
 
   def comment_params

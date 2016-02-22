@@ -1,6 +1,6 @@
 <md-card class="md-post" ng-repeat="post in posts | filter:searchPost | orderBy:'-id' track by $index"
                          ng-class="{ 'md-whiteframe-9dp': $index == selectedIndex }"
-                         ng-click="lineClicked($index)">
+                         ng-click="setPost($index, post.id)">
 
   <md-card-content class="md-post-card">
     <div layout="row">
@@ -34,16 +34,27 @@
   </md-card-actions>
 
   <md-card-content class="md-liner" ng-show="$index == selectedIndex" layout="column">
-    <div layout="row">          
+    <div layout="row" ng-repeat="comment in comments | orderBy:'-id' track by $index">
+      <img ng-src="{{user.image}}" class="md-liner-avatar" alt="{{post.user.id}}" />
+
+      <div class="md-post-header" layout="column">
+        <p>
+          {{comment.content}}
+        </p>
+      </div>
+    </div>
+
+    <div layout="row">        
       <img ng-src="{{user.image}}" class="md-liner-avatar" alt="{{user.id}}" />
 
       <div flex="85" class="md-add-line column">
         <md-input-container md-no-float class="md-block">
-          <input ng-model="post.comment" type="text" placeholder="Reply to {{post.poster.name}}!"
-                 ng-keypress="($event.charCode==13)?addComment(comment):return">
+          <input ng-model="comment" type="text" placeholder="Reply to {{post.poster.name}}!"
+                 ng-keypress="($event.charCode==13)?addComment(post.id, comment):return">
         </md-input-container>
       </div>
     </div>
+
   </md-card-content>
 
 </md-card>
