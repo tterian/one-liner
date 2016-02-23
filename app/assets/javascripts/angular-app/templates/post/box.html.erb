@@ -38,6 +38,14 @@
       <img ng-src="{{user.image}}" class="md-liner-avatar" alt="{{post.user.id}}" />
 
       <div class="md-post-header" layout="column">
+        <h3>
+          <span ng-click="redirectToProfile(post.user_id)" class="md-post-owner">
+            {{post.poster.name}}
+          </span>
+          <span>
+            <em am-time-ago="post.created_at" class="time-ago"></em>
+          </span>
+        </h3>
         <p>
           {{comment.content}}
         </p>
@@ -49,7 +57,7 @@
 
       <div flex="85" class="md-add-line column">
         <md-input-container md-no-float class="md-block">
-          <input ng-model="comment" type="text" placeholder="Reply to {{post.poster.name}}!"
+          <input ng-model="comment.content" type="text" placeholder="Reply to {{post.poster.name}}!"
                  ng-keypress="($event.charCode==13)?addComment(post.id, comment):return">
         </md-input-container>
       </div>

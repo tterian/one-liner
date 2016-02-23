@@ -25,7 +25,7 @@ function MainController($scope, $document, $location, $mdDialog, User, Relations
   //     });
   // }
 
-  $scope.addPost = function(post) {
+  $scope.addLine = function(post) {
     var user = $scope.user;
 
     if ($scope.posts.length == 0) {
@@ -55,6 +55,17 @@ function MainController($scope, $document, $location, $mdDialog, User, Relations
         $scope.posts.push(newPost);
         $scope.post = '';
       });
+  };
+
+  $scope.showAddLine = function(ev) {
+    $mdDialog.show({
+      scope: $scope,
+      preserveScope: true,
+      escapeToClose: true,
+      controller: 'PostsController',
+      templateUrl: 'assets/angular-app/templates/post/new.html.erb',
+      targetEvent: ev
+    });
   };
 
   // $document.on('click', function(e) {

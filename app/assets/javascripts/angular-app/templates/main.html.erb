@@ -15,7 +15,7 @@
         <div flex="85" class="md-add-line column">
           <md-input-container md-no-float class="md-block">
             <input ng-model="post.content" type="text" placeholder="Share a line!"
-                   ng-keypress="($event.charCode==13)?addPost(post):return">
+                   ng-keypress="($event.charCode==13)?addLine(post):return">
           </md-input-container>
         </div>
       </div>
@@ -31,3 +31,8 @@
 </div>
 
 <span flex="15"></span>
+
+
+<md-button class="md-fab md-fab-bottom-right" aria-label="Add line" ng-click="showAddLine($event)">
+  <md-icon md-svg-icon="assets/svg/md-plus.svg"></md-icon>
+</md-button>

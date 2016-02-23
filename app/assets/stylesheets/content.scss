@@ -6,6 +6,14 @@ $light-blue   : #55aeed;
 $dark-grey    : #eeeeee;
 $light-grey   : #aab8c2;
 
+$grey         : #607D8B;
+$light-blue   : #55aeed;
+
+$grey-palette : #e1eef6;
+$red-palette  : #ff5f2e;
+$yell-palette : #fcbe32;
+
+
 .md-main-content {
   padding: 138px 40px 20px 40px;
   background-color: $dark-grey !important;
@@ -142,4 +150,8 @@ md-toolbar {
 .md-whiteframe-9dp {
   -webkit-transition: box-shadow 400ms ease;
   transition:         box-shadow 400ms ease;
+}
+
+.md-fab {
+  background-color: $red-palette !important;
 }

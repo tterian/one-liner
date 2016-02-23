@@ -33,9 +33,9 @@ function PostsController($scope, $document, $mdDialog, Post, Comment) {
       });
   };
 
-  $scope.addComment = function(comment) {
+  $scope.addComment = function(postId, comment) {
     console.log(comment)
-    Comment.create(comment).$promise
+    Comment.create(postId, comment).$promise
       .then(function() {
         $scope.comments.push(comment);
       });
